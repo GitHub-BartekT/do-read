@@ -10,7 +10,7 @@ Most of children watch cartoons. Program is compatible with the learning method 
 ## Technologies
 1.  Backend
     - Environment - Intellij IDEA
-      - Java 11 or 17
+      - Java 17
       - Maven
       - Spring Boot
     - Databases
@@ -31,7 +31,7 @@ Most of children watch cartoons. Program is compatible with the learning method 
 1.  Running on pc in a simple and fast way⛔
 2.  Showing big red text with white background⛔
 3.  Quick and easy changing texts during session⛔
-4.  Databases of basic words⛔
+4.  Database of basic words✅
 5.  Posiibility of edition belows features⛔
     - sessions per day⛔
     - presentations per session⛔

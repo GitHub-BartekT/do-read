@@ -1,0 +1,10 @@
+insert into module (sentence) values ('mama');
+insert into module (sentence) values ('tata');
+insert into module (sentence) values ('brat');
+insert into module (sentence) values ('siostra');
+insert into module (sentence) values ('miś');
+insert into module (sentence) values ('lala');
+insert into module (sentence) values ('oko');
+insert into module (sentence) values ('noga');
+insert into module (sentence) values ('ręka');
+insert into module (sentence) values ('dom');
