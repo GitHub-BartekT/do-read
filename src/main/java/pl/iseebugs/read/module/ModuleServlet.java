@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-class ModuleServlet{
+public class ModuleServlet{
     private final Logger logger = LoggerFactory.getLogger(ModuleServlet.class);
 
     private ModuleService service;

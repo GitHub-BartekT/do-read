@@ -1,4 +1,4 @@
-package pl.iseebugs.read.modulProperties;
+package pl.iseebugs.read.moduleProperties;
 
 class ModulePropertiesDTO {
     private int id;

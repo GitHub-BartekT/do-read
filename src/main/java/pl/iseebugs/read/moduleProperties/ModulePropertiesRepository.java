@@ -1,4 +1,4 @@
-package pl.iseebugs.read.modulProperties;
+package pl.iseebugs.read.moduleProperties;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

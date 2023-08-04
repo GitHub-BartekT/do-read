@@ -7,10 +7,30 @@
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 <body>
-<main style="width: 40%; margin: 0 auto">
+<main style="width: 50%; margin: 0 auto">
     <div id="welcome" style="text-align: center">
-        <h1>do read</h1>
+        <h1><span style="color: #a81818">do read</span></h1>
     </div>
+
+    <div id="Properties" style="text-align: center">
+        <h2>Properties</h2>
+    </div>
+
+    <table id = "tabelka" class="pure-table pure-table-bordered pure-table-striped" style="text-align: center">
+            <tr>
+                <td>id</td>
+                <td>Sessions per day</td>
+                <td>Presentations per session</td>
+                <td>new sentences per day</td>
+                <td>actual day</td>
+                <td>next session</td>
+            </tr>
+    </table>
+
+    <div id="Module" style="text-align: center">
+        <h2>Module:...</h2>
+    </div>
+
     <ol>
         <div id = "list"></div>
     </ol>
@@ -22,12 +42,34 @@
         .then((response) => response.json())
         .then((modulesArr) => {
         const list = modulesArr.map(s =>
-            `<li>${s.sentence}</li> `)
+            `<li>${s.sentence}</li>
+            `)
             .join('\n');
             document.getElementById('list').innerHTML = list
     });
 
-</script>
+    fetch(`${API_URL}/moduleProperties`)
+        .then((response) => response.json())
+        .then((modulesPropArr) => {
+                modulesPropArr.map(s => {
+                let table = document.getElementById('tabelka');
+                let row = table.insertRow(-1);
+
+                newCellInRow(row, 0, s.id);
+                newCellInRow(row, 1, s.sessionsPerDay);
+                newCellInRow(row, 2, s.presentationsPerSession);
+                newCellInRow(row, 3, s.newSentencesPerDay);
+                newCellInRow(row, 4, s.actualDay);
+                newCellInRow(row, 5, s.nextSession);
+            });
+        });
+
+    function newCellInRow(row, int, text){
+        let newCell = row.insertCell(int);
+        let newText = document.createTextNode(text);
+        newCell.appendChild(newText);
+    }
+    </script>
 </body>
 </html>
 

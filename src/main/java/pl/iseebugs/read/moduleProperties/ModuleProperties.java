@@ -1,19 +1,24 @@
-package pl.iseebugs.read.modulProperties;
+package pl.iseebugs.read.moduleProperties;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name ="moduleProperties")
+@Table(name = "module_Properties")
 class ModuleProperties {
     @Id
     @GeneratedValue(generator="inc")
     @GenericGenerator(name="inc", strategy = "increment")
     private int id;
+    @Column(name = "sessions_Per_Day")
     private int sessionsPerDay;
+    @Column(name = "presentations_Per_Session")
     private int presentationsPerSession;
+    @Column(name = "new_Sentences_Per_Day")
     private int newSentencesPerDay;
+    @Column(name = "actual_Day")
     private int actualDay;
+    @Column(name = "next_Session")
     private int nextSession;
 
     public ModuleProperties(){}

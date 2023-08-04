@@ -1,4 +1,4 @@
-package pl.iseebugs.read.modulProperties;
+package pl.iseebugs.read.moduleProperties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +18,8 @@ public class ModulePropertiesServlet {
 
     ModulePropertiesServlet(ModulePropertiesService service){this.service = service;}
 
-    @GetMapping("/modulesProperties")
-    ResponseEntity<List<ModulePropertiesDTO>> findALLModule(){
+    @GetMapping("/moduleProperties")
+    ResponseEntity<List<ModulePropertiesDTO>> findALLModuleProperties(){
         logger.info("Get Request");
         return ResponseEntity.ok(service.findALL());
     }
