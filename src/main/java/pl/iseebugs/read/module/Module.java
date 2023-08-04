@@ -12,7 +12,6 @@ class Module {
     private int id;
     private String sentence;
 
-    @SuppressWarnings("unused")
     public Module (){}
 
     public Module (int id, String sentence) {
