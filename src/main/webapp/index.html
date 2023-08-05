@@ -18,6 +18,15 @@
     <table id = "main table" >
         <tr>
             <td>
+
+                <table id = 'buttons'>
+                    <tr>
+                        <button class="pure-button pure-button-disabled">Show module</button>
+                    </tr>
+
+                </table>
+            </td>
+            <td>
                 <table id = "all-module-table" class="pure-table pure-table-bordered pure-table-striped" style="text-align: center">
                     <tr>
                         <td>id</td>
@@ -51,15 +60,9 @@
 </main>
 <script>
     const API_URL = 'http://localhost:8080/api';
-    fetch(`${API_URL}/modules`)
-        .then((response) => response.json())
-        .then((modulesArr) => {
-        const list = modulesArr.map(s =>
-            `<li>${s.sentence}</li>
-            `)
-            .join('\n');
-            document.getElementById('list').innerHTML = list
-    });
+
+
+
 
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
@@ -67,10 +70,17 @@
             modulesPropArr.map(s => {
                 let table = document.getElementById('all-module-table');
                 let row = table.insertRow(-1);
-
                 newCellInRow(row, 0, s.id);
                 newCellInRow(row, 1, s.module_Name);
                 newCellInRow(row, 2, s.active);
+
+                let tableButtons = document.getElementById('buttons');
+                let rowButtons = tableButtons.insertRow(-1);
+                let newCell = rowButtons.insertCell(0);
+                const newButton = document.createElement("div");
+                let newDiv = `<button id= ${s.id} class="pure-button" >${s.module_Name}</button>`;
+                newButton.innerHTML = newDiv;
+                newCell.appendChild(newButton);
             });
         });
 
@@ -95,6 +105,17 @@
         let newText = document.createTextNode(text);
         newCell.appendChild(newText);
     }
+
+
+    fetch(`${API_URL}/modules`)
+        .then((response) => response.json())
+        .then((modulesArr) => {
+            const list = modulesArr.map(s =>
+                `<li>${s.sentence}</li>
+            `)
+                .join('\n');
+            document.getElementById('list').innerHTML = list
+        });
     </script>
 </body>
 </html>
