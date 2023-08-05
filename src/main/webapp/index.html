@@ -7,26 +7,39 @@
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 <body>
-<main style="width: 50%; margin: 0 auto">
+<main style="width: 70%; margin: 0 auto">
     <div id="welcome" style="text-align: center">
         <h1><span style="color: #a81818">do read</span></h1>
     </div>
 
-    <div id="Properties" style="text-align: center">
-        <h2>Properties</h2>
+    <div id="Modules Properties" style="text-align: center">
+        <h2>Modules Properties</h2>
     </div>
-
-    <table id = "tabelka" class="pure-table pure-table-bordered pure-table-striped" style="text-align: center">
-            <tr>
-                <td>id</td>
-                <td>Sessions per day</td>
-                <td>Presentations per session</td>
-                <td>new sentences per day</td>
-                <td>actual day</td>
-                <td>next session</td>
-            </tr>
+    <table id = "main table" >
+        <tr>
+            <td>
+                <table id = "all-module-table" class="pure-table pure-table-bordered pure-table-striped" style="text-align: center">
+                    <tr>
+                        <td>id</td>
+                        <td>module name</td>
+                        <td>active</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table id = "module-properties-table" class="pure-table pure-table-bordered pure-table-striped" style="text-align: center">
+                    <tr>
+                        <td>id</td>
+                        <td>Sessions per day</td>
+                        <td>Presentations per session</td>
+                        <td>new sentences per day</td>
+                        <td>actual day</td>
+                        <td>next session</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
-
     <div id="Module" style="text-align: center">
         <h2>Module:...</h2>
     </div>
@@ -48,11 +61,24 @@
             document.getElementById('list').innerHTML = list
     });
 
+    fetch(`${API_URL}/allModules`)
+        .then((response) => response.json())
+        .then((modulesPropArr) => {
+            modulesPropArr.map(s => {
+                let table = document.getElementById('all-module-table');
+                let row = table.insertRow(-1);
+
+                newCellInRow(row, 0, s.id);
+                newCellInRow(row, 1, s.module_Name);
+                newCellInRow(row, 2, s.active);
+            });
+        });
+
     fetch(`${API_URL}/moduleProperties`)
         .then((response) => response.json())
         .then((modulesPropArr) => {
                 modulesPropArr.map(s => {
-                let table = document.getElementById('tabelka');
+                let table = document.getElementById('module-properties-table');
                 let row = table.insertRow(-1);
 
                 newCellInRow(row, 0, s.id);

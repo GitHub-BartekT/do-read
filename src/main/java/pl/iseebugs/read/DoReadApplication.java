@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @SpringBootApplication
-@ComponentScan({"pl.iseebugs.read.moduleProperties","pl.iseebugs.read.module"})
+//@ComponentScan({"pl.iseebugs.read.moduleProperties","pl.iseebugs.read.module"})
 public class DoReadApplication {
 
 	public static void main(String[] args) {
