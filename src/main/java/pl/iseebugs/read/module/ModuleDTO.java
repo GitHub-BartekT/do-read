@@ -3,10 +3,12 @@ package pl.iseebugs.read.module;
 class ModuleDTO {
     private int id;
     private String sentence;
+    private int module;
 
     public ModuleDTO(Module module) {
         this.id = module.getId();
         this.sentence = module.getSentence();
+        this.module = module.getModule();
     }
 
     public int getId() {
@@ -23,5 +25,13 @@ class ModuleDTO {
 
     public void setSentence(String sentence) {
         this.sentence = sentence;
+    }
+
+    public int getModule() {
+        return module;
+    }
+
+    public void setModule(int module) {
+        this.module = module;
     }
 }

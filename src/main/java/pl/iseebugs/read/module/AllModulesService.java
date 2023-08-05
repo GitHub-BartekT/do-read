@@ -3,6 +3,7 @@ package pl.iseebugs.read.module;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -20,5 +21,9 @@ class AllModulesService {
                 .stream()
                 .map(AllModulesDTO::new)
                 .collect(toList());
+    }
+
+    Optional<AllModules> findById(Integer id){
+        return repository.findById(id);
     }
 }

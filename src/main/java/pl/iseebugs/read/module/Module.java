@@ -11,12 +11,14 @@ class Module {
     @GenericGenerator(name="inc", strategy = "increment")
     private int id;
     private String sentence;
+    private int module;
 
     public Module (){}
 
-    public Module (int id, String sentence) {
+    public Module (int id, String sentence, int module) {
         this.id = id;
         this.sentence = sentence;
+        this.module = module;
     }
 
     public int getId() {
@@ -33,5 +35,13 @@ class Module {
 
     public void setSentence(String sentence) {
         this.sentence = sentence;
+    }
+
+    public int getModule() {
+        return module;
+    }
+
+    public void setModule(int module) {
+        this.module = module;
     }
 }

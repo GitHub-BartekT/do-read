@@ -18,12 +18,10 @@
     <table id = "main table" >
         <tr>
             <td>
-
                 <table id = 'buttons'>
                     <tr>
                         <button class="pure-button pure-button-disabled">Show module</button>
                     </tr>
-
                 </table>
             </td>
             <td>
@@ -78,11 +76,13 @@
                 let rowButtons = tableButtons.insertRow(-1);
                 let newCell = rowButtons.insertCell(0);
                 const newButton = document.createElement("div");
-                let newDiv = `<button id= ${s.id} class="pure-button" >${s.module_Name}</button>`;
+                let newDiv = `<button id=${s.id} class="pure-button" >${s.module_Name}</button>`;
                 newButton.innerHTML = newDiv;
                 newCell.appendChild(newButton);
             });
         });
+
+
 
     fetch(`${API_URL}/moduleProperties`)
         .then((response) => response.json())
@@ -106,16 +106,32 @@
         newCell.appendChild(newText);
     }
 
+    const moduleButtons = document.getElementById('buttons');
 
-    fetch(`${API_URL}/modules`)
+    const moduleButtonsPressed = e => {
+
+        const isButton = e.target.nodeName === 'BUTTON';
+
+        if(!isButton){
+            return
+        }
+
+        const formObj = {
+            id: e.target.id
+        };
+        fetch(`${API_URL}/allModules?${new URLSearchParams(formObj)}`)
         .then((response) => response.json())
         .then((modulesArr) => {
             const list = modulesArr.map(s =>
-                `<li>${s.sentence}</li>
-            `)
+                `<li>${s.sentence}</li>`)
                 .join('\n');
-            document.getElementById('list').innerHTML = list
+            document.getElementById('list').innerHTML = list;
         });
+    }
+
+    moduleButtons.addEventListener("click", moduleButtonsPressed);
+
+
     </script>
 </body>
 </html>
