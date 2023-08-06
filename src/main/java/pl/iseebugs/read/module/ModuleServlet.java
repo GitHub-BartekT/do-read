@@ -30,7 +30,13 @@ public class ModuleServlet{
 
     @GetMapping (value = "/module", params = {"id"})
         ResponseEntity<List<ModuleDTO>> findModuleSentences(@RequestParam("id") Integer id){
-        logger.info("Get Request");
+        logger.info("Get Request param: id " + id);
         return ResponseEntity.ok(service.findOneModuleById(id));
+    }
+
+    @GetMapping (value = "/module", params = {"module"})
+        ResponseEntity<List<ModuleDTO>> showNextSession(@RequestParam("module") Integer module){
+        logger.info("Get Request param: module " + module);
+        return ResponseEntity.ok(service.nextSession(module));
     }
 }

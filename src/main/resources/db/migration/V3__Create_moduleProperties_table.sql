@@ -14,11 +14,11 @@ CREATE TABLE module_Properties(
 );
 
 INSERT INTO all_Modules (module_Name, active) VALUES ('polish', 'TRUE');
-INSERT INTO all_Modules (module_Name, active) VALUES ('english', 'FALSE');
+INSERT INTO all_Modules (module_Name, active) VALUES ('english', 'TRUE');
 INSERT INTO module_Properties (sessions_Per_Day, presentations_Per_Session,
                               new_Sentences_Per_Day,actual_Day)
                               VALUES (3,5,1,8);
 INSERT INTO module_Properties (sessions_Per_Day, presentations_Per_Session,
                                new_Sentences_Per_Day,actual_Day, next_Session)
-VALUES (2,3,1,5,1);
+                            VALUES (2,3,1,5,1);
 

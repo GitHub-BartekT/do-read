@@ -47,20 +47,42 @@
             </td>
         </tr>
     </table>
-    <div id="Module" style="text-align: center">
-        <h2>Module:...</h2>
-    </div>
-
-    <ol>
-        <div id = "list"></div>
-    </ol>
-
+    <table class="pure-table pure-table-bordered" style="text-align: center" >
+        <tr>
+            <td>
+                <h2>Module: </h2>
+            </td>
+            <td>
+                <h2>
+                    <div id="Module" > </div>
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>All words</h3>
+            </td>
+            <td>
+                <h3>Next session</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ol>
+                    <div id = "list"></div>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                    <div id = "next session"></div>
+                </ol>
+            </td>
+        </tr>
+    </table>
 </main>
+
 <script>
     const API_URL = 'http://localhost:8080/api';
-
-
-
 
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
@@ -119,6 +141,24 @@
         const formObj = {
             id: e.target.id
         };
+
+        const formNextSession = {
+            module: e.target.id
+        };
+
+        let button = document.getElementById(e.target.id);
+        let text = button.innerText;
+
+        fetch(`${API_URL}/module?${new URLSearchParams(formNextSession)}`)
+            .then((response) => response.json())
+            .then((modulesArr) => {
+                const list = modulesArr.map(s =>
+                    `<li>${s.sentence}</li>`)
+                    .join('\n');
+                document.getElementById('next session').innerHTML = list;
+            });
+
+        document.getElementById("Module").innerText = text;
         fetch(`${API_URL}/module?${new URLSearchParams(formObj)}`)
         .then((response) => response.json())
         .then((modulesArr) => {
@@ -127,11 +167,14 @@
                 .join('\n');
             document.getElementById('list').innerHTML = list;
         });
+
+
+
+
+
     }
 
     moduleButtons.addEventListener("click", moduleButtonsPressed);
-
-
     </script>
 </body>
 </html>

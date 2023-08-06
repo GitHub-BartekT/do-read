@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "module_Properties")
-class ModuleProperties {
+public class ModuleProperties {
     @Id
     @GeneratedValue(generator="inc")
     @GenericGenerator(name="inc", strategy = "increment")

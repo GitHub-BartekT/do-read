@@ -1,6 +1,6 @@
 package pl.iseebugs.read.moduleProperties;
 
-class ModulePropertiesDTO {
+public  class ModulePropertiesDTO {
     private int id;
     private int sessionsPerDay;
     private int presentationsPerSession;
