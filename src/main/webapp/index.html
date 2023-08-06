@@ -119,7 +119,7 @@
         const formObj = {
             id: e.target.id
         };
-        fetch(`${API_URL}/allModules?${new URLSearchParams(formObj)}`)
+        fetch(`${API_URL}/module?${new URLSearchParams(formObj)}`)
         .then((response) => response.json())
         .then((modulesArr) => {
             const list = modulesArr.map(s =>

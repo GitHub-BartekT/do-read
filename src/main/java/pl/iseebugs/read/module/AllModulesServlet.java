@@ -29,11 +29,4 @@ public class AllModulesServlet {
         return ResponseEntity.ok(service.findALL());
     }
 
-    @GetMapping (value = "/allModules", params = {"id"})
-    ResponseEntity<List<ModuleDTO>> findModuleSentences(@RequestParam("id") Integer id){
-        logger.info("Get Request");
-        var module = service.findById(id);
-        return ResponseEntity.ok(moduleService.findListById(id));
-    }
-
 }

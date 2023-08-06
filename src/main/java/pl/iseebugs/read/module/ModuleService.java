@@ -21,7 +21,7 @@ class ModuleService {
                 .collect(toList());
     }
 
-    List<ModuleDTO> findListById(Integer module){
+    List<ModuleDTO> findOneModuleById(Integer module){
         return repository
                 .findAll()
                 .stream()
