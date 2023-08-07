@@ -61,4 +61,11 @@ class ModuleService {
                 .collect(toList());
     }
 
+    public void saveModule(ModuleDTO moduleDTO) {
+        Module module = new Module();
+        module.setSentence(module.getSentence());
+        module.setModule(moduleDTO.getModule());
+        repository.save(module);
+    }
+
   }

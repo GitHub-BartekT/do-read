@@ -22,7 +22,6 @@ public class ModulePropertiesService {
                 .collect(toList());
     }
 
-
     public Optional <ModulePropertiesDTO> findById(int id){
        return repository.findById(id).map(ModulePropertiesDTO::new);
     }

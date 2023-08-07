@@ -78,6 +78,16 @@
                 </ol>
             </td>
         </tr>
+        <tr>
+            <td>
+                <form class="pure-form">
+                    <input class="pure-input-rounded pure-u-1" name="new sentence" placeholder="New sentence" />
+                </form>
+            </td>
+            <td>
+                <button id="Add sentence btn" class="pure-button pure-button-primary">Add</button>
+            </td>
+        </tr>
     </table>
 </main>
 
@@ -167,10 +177,6 @@
                 .join('\n');
             document.getElementById('list').innerHTML = list;
         });
-
-
-
-
 
     }
 
