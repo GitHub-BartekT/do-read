@@ -16,11 +16,10 @@ public class AllModulesServlet {
     private final Logger logger = LoggerFactory.getLogger(AllModulesServlet.class);
 
     private AllModulesService service;
-    private ModuleService moduleService;
 
-    AllModulesServlet(AllModulesService service, ModuleService moduleService){
+
+    AllModulesServlet(AllModulesService service){
         this.service = service;
-        this.moduleService = moduleService;
     }
 
     @GetMapping("/allModules")

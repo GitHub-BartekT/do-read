@@ -45,12 +45,19 @@ class ModuleService {
     //TODO :: starting point of each module (table id - no; "module id" - yes)
 
     List<ModuleDTO> nextSession(Integer module){
-        int howManySentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
-        int startSentence = modulePropertiesRepository.findById(module).get().getActualDay();
-        List<ModuleDTO> list = findOneModuleById(module);
-        return list.stream()
-                .filter(i -> i.getId() >= startSentence)
-                //.filter(j -> j.getId() < howManySentence + startSentence)
+
+        int firstSentence = modulePropertiesRepository.findById(module).get().getActualDay() - 1;
+        int startSentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
+        int lastSentence = firstSentence + startSentence;
+        List<ModuleDTO> list = repository
+                .findWszystkie(module)
+                .stream()
+                .map(ModuleDTO::new)
+                .collect(toList());
+
+       return list.stream()
+                .filter(i -> list.indexOf(i) >= firstSentence)
+                .filter(j -> list.indexOf(j) < lastSentence)
                 .collect(toList());
     }
 
