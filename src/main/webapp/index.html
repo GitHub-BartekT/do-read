@@ -142,18 +142,27 @@
             });
         });
 
-    document.getElementById('Add sentence btn').addEventListener('click',addSentenceToList);
+    document.getElementById('Add sentence btn').addEventListener('click',addSentence);
 
     //TODO: Frontend add new sentence btn, Backend fetch with date and read data
-   /* function addSentence(){
-        const paramAddSentence = {
-            snetence: document.getElementById('new sentence').value,
-            module: document.getElementById('new sentence').value
-        };
+    function addSentence(){
+            const paramAddSentence = {
+                sentence: document.getElementById('new sentence').value,
+                module: document.getElementById('moduleNumber').innerHTML
+            };
 
-    fetch(`${MODULE_API_URL}?${new URLSearchParams(formNextSession)}`)
+        fetch(`${MODULE_API_URL}`,
+            {   method: 'Post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': `application/json`
+                },
+                body: JSON.stringify(paramAddSentence)}
+            )
+            .then(processOkResponse)
+            .then(addSentenceToList);
     }
-*/
+
     function addSentenceToList(){
 
         let newSentenceText = document.getElementById('new sentence').value;
@@ -211,6 +220,13 @@
         let newCell = row.insertCell(int);
         let newText = document.createTextNode(text);
         newCell.appendChild(newText);
+    }
+
+    function processOkResponse(response = {}) {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(`Status not 200 (${response.status})`);
     }
     </script>
 </body>

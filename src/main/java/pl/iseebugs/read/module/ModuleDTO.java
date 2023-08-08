@@ -5,6 +5,8 @@ class ModuleDTO {
     private String sentence;
     private int module;
 
+    public ModuleDTO(){    }
+
     public ModuleDTO(Module module) {
         this.id = module.getId();
         this.sentence = module.getSentence();

@@ -1,6 +1,7 @@
 package pl.iseebugs.read.module;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.iseebugs.read.moduleProperties.ModulePropertiesDTO;
 import pl.iseebugs.read.moduleProperties.ModulePropertiesRepository;
@@ -61,11 +62,11 @@ class ModuleService {
                 .collect(toList());
     }
 
-    public void saveSentence(ModuleDTO moduleDTO) {
+    ResponseEntity<Module> saveSentence(ModuleDTO moduleDTO) {
         Module module = new Module();
-        module.setSentence(module.getSentence());
+        module.setSentence(moduleDTO.getSentence());
         module.setModule(moduleDTO.getModule());
-        repository.save(module);
+        return ResponseEntity.ok(repository.save(module));
     }
 
   }
