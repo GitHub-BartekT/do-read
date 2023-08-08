@@ -47,6 +47,7 @@
             </td>
         </tr>
     </table>
+
     <table class="pure-table pure-table-bordered" style="text-align: center" >
         <tr>
             <td>
@@ -54,25 +55,32 @@
             </td>
             <td>
                 <h2>
-                    <div id="Module" > </div>
+                    <div id="moduleNumber"></div>
+                </h2>
+            </td>
+            <td>
+                <h2>
+                    <div id="moduleName"> </div>
                 </h2>
             </td>
         </tr>
+
         <tr>
             <td>
                 <form class="pure-form">
                     <input id="new sentence" class="pure-input-rounded pure-u-1"  placeholder="New sentence" />
                 </form>
             </td>
-            <td>
+            <td colspan="2">
                 <button id="Add sentence btn" class="pure-button pure-button-primary">Add sentence</button>
             </td>
-        </tr>
+        </tr
+        >
         <tr>
             <td>
                 <h3>All words</h3>
             </td>
-            <td>
+            <td colspan="2">
                 <h3>Next session</h3>
             </td>
         </tr>
@@ -82,7 +90,7 @@
                     <div id = "list"></div>
                 </ol>
             </td>
-            <td>
+            <td colspan="2" style="vertical-align: top">
                 <ol>
                     <div id = "next session"></div>
                 </ol>
@@ -94,6 +102,7 @@
 
 <script>
     const API_URL = 'http://localhost:8080/api';
+    const MODULE_API_URL = `${API_URL}/module`;
 
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
@@ -133,14 +142,22 @@
             });
         });
 
-    document.getElementById('Add sentence btn').addEventListener('click',addSentence);
+    document.getElementById('Add sentence btn').addEventListener('click',addSentenceToList);
 
     //TODO: Frontend add new sentence btn, Backend fetch with date and read data
-    function addSentence(){
+   /* function addSentence(){
+        const paramAddSentence = {
+            snetence: document.getElementById('new sentence').value,
+            module: document.getElementById('new sentence').value
+        };
+
+    fetch(`${MODULE_API_URL}?${new URLSearchParams(formNextSession)}`)
+    }
+*/
+    function addSentenceToList(){
+
         let newSentenceText = document.getElementById('new sentence').value;
-        const list = document.getElementById('list').innerHTML = document.getElementById('list').innerHTML + `
-        <li>${newSentenceText}</li>
-        `
+        document.getElementById('list').innerHTML += `<li>${newSentenceText}</li>`
     }
 
 
@@ -165,7 +182,9 @@
         let button = document.getElementById(e.target.id);
         let text = button.innerText;
 
-        fetch(`${API_URL}/module?${new URLSearchParams(formNextSession)}`)
+        document.getElementById('moduleNumber').innerText = e.target.id;
+
+        fetch(`${MODULE_API_URL}?${new URLSearchParams(formNextSession)}`)
             .then((response) => response.json())
             .then((modulesArr) => {
                 const list = modulesArr.map(s =>
@@ -174,8 +193,8 @@
                 document.getElementById('next session').innerHTML = list;
             });
 
-        document.getElementById("Module").innerText = text;
-        fetch(`${API_URL}/module?${new URLSearchParams(formObj)}`)
+        document.getElementById("moduleName").innerText = text;
+        fetch(`${MODULE_API_URL}?${new URLSearchParams(formObj)}`)
         .then((response) => response.json())
         .then((modulesArr) => {
             const list = modulesArr.map(s =>
