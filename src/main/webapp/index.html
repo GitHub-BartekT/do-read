@@ -60,6 +60,16 @@
         </tr>
         <tr>
             <td>
+                <form class="pure-form">
+                    <input id="new sentence" class="pure-input-rounded pure-u-1"  placeholder="New sentence" />
+                </form>
+            </td>
+            <td>
+                <button id="Add sentence btn" class="pure-button pure-button-primary">Add sentence</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <h3>All words</h3>
             </td>
             <td>
@@ -78,16 +88,7 @@
                 </ol>
             </td>
         </tr>
-        <tr>
-            <td>
-                <form class="pure-form">
-                    <input class="pure-input-rounded pure-u-1" name="new sentence" placeholder="New sentence" />
-                </form>
-            </td>
-            <td>
-                <button id="Add sentence btn" class="pure-button pure-button-primary">Add</button>
-            </td>
-        </tr>
+
     </table>
 </main>
 
@@ -132,11 +133,16 @@
             });
         });
 
-    function newCellInRow(row, int, text){
-        let newCell = row.insertCell(int);
-        let newText = document.createTextNode(text);
-        newCell.appendChild(newText);
+    document.getElementById('Add sentence btn').addEventListener('click',addSentence);
+
+    //TODO: Frontend add new sentence btn, Backend fetch with date and read data
+    function addSentence(){
+        let newSentenceText = document.getElementById('new sentence').value;
+        const list = document.getElementById('list').innerHTML = document.getElementById('list').innerHTML + `
+        <li>${newSentenceText}</li>
+        `
     }
+
 
     const moduleButtons = document.getElementById('buttons');
 
@@ -181,6 +187,12 @@
     }
 
     moduleButtons.addEventListener("click", moduleButtonsPressed);
+
+    function newCellInRow(row, int, text){
+        let newCell = row.insertCell(int);
+        let newText = document.createTextNode(text);
+        newCell.appendChild(newText);
+    }
     </script>
 </body>
 </html>
