@@ -15,13 +15,14 @@
     <div id="Modules Properties" style="text-align: center">
         <h2>Modules Properties</h2>
     </div>
+
     <table id = "main table" >
         <tr>
             <td>
                 <table id = 'buttons'>
-                    <tr>
-                        <button class="pure-button pure-button-disabled">Show module</button>
-                    </tr>
+                    <div class="pure-u">
+                            <button class="pure-button pure-button-disabled">Show module</button>
+                    </div>
                 </table>
             </td>
             <td>
@@ -42,6 +43,8 @@
                         <td>new sentences per day</td>
                         <td>actual day</td>
                         <td>next session</td>
+                        <td>change module</td>
+                        <td>accept changes</td>
                     </tr>
                 </table>
             </td>
@@ -64,7 +67,6 @@
                 </h2>
             </td>
         </tr>
-
         <tr>
             <td>
                 <form class="pure-form">
@@ -96,7 +98,6 @@
                 </ol>
             </td>
         </tr>
-
     </table>
 </main>
 
@@ -114,17 +115,37 @@
                 newCellInRow(row, 1, s.module_Name);
                 newCellInRow(row, 2, s.active);
 
+                //TODO: merge to one function. ONE
                 let tableButtons = document.getElementById('buttons');
                 let rowButtons = tableButtons.insertRow(-1);
                 let newCell = rowButtons.insertCell(0);
                 const newButton = document.createElement("div");
-                let newDiv = `<button id=${s.id} class="pure-button" >${s.module_Name}</button>`;
+                let newDiv = `<div>
+                                        <style>
+                                                .button-accept,
+                                                .button-decline,
+                                                 {
+                                                    color: white;
+                                                    border-radius: 4px;
+                                                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                                                }
+
+                                                .button-accept {
+                                                    background: rgb(28, 184, 65);
+                                                    /* this is a green */
+                                                }
+
+                                                .button-decline {
+                                                    background: rgb(202, 60, 60);
+                                                    /* this is a maroon */
+                                                }
+                                        </style>
+                                    <button id=${s.id} class="pure-button" >${s.module_Name}</button>
+                                </div>`;
                 newButton.innerHTML = newDiv;
                 newCell.appendChild(newButton);
             });
         });
-
-
 
     fetch(`${API_URL}/moduleProperties`)
         .then((response) => response.json())
@@ -139,12 +160,57 @@
                 newCellInRow(row, 3, s.newSentencesPerDay);
                 newCellInRow(row, 4, s.actualDay);
                 newCellInRow(row, 5, s.nextSession);
+
+                //TODO: merge to one function. ONE
+                let newCell = row.insertCell(6);
+                const newButton = document.createElement("div");
+                let textChangeBtn = `changeBtn${s.id}`;
+                let newDiv = ` <button id="${textChangeBtn}" class="pure-button pure-button-primary" >Change module</button>
+                              `;
+                newButton.innerHTML = newDiv;
+                newCell.appendChild(newButton);
+
+                //TODO: merge to one function. ONE
+                let newChangeCell = row.insertCell(7);
+                const newChangeButton = document.createElement("div");
+                let textAcceptChangeBtn = `acceptChangesBtn${s.id}`;
+                let newChangeDiv = `<button id="${textAcceptChangeBtn}" name="acceptChangesBtn" class="pure-button pure-button-disabled" >Acept changes</button>`;
+                newChangeButton.innerHTML = newChangeDiv;
+                newChangeCell.appendChild(newChangeButton);
             });
         });
 
+    //TODO: changing buttons "Change module" => Decline
+    const changeModuleButtons = document.getElementById('main table');
+    const changeModuleButtonsPressed = e => {
+        const isButton = e.target.nodeName === 'BUTTON';
+
+        if(!isButton){ return}
+        const formObj = {id: e.target.id};
+
+        let rowID = `${e.target.id}`;
+        let changeBtnID = "changeBtn" + rowID.substring(9);
+        let acceptChangeBtnID = "acceptChangesBtn" + rowID.substring(9);
+
+        //TODO: make if statment reading what is state of button
+        document.getElementById(changeBtnID).innerText = "Decline";
+        document.getElementById(`${e.target.id}`).classList.add("button-decline");
+
+        document.getElementById(acceptChangeBtnID).classList.remove("pure-button-disabled");
+        document.getElementById(acceptChangeBtnID).classList.add("pure-button-primary");
+        document.getElementById(acceptChangeBtnID).classList.add("button-accept");
+
+        document.getElementById('welcome').innerHTML = acceptChangeBtnID;
+    }
+
+
+    changeModuleButtons.addEventListener("click",changeModuleButtonsPressed);
+
+
+
+
     document.getElementById('Add sentence btn').addEventListener('click',addSentence);
 
-    //TODO: Frontend add new sentence btn, Backend fetch with date and read data
     function addSentence(){
             const paramAddSentence = {
                 sentence: document.getElementById('new sentence').value,
@@ -171,22 +237,14 @@
 
 
     const moduleButtons = document.getElementById('buttons');
-
     const moduleButtonsPressed = e => {
-
         const isButton = e.target.nodeName === 'BUTTON';
 
-        if(!isButton){
-            return
-        }
+        if(!isButton){ return}
 
-        const formObj = {
-            id: e.target.id
-        };
+        const formObj = {id: e.target.id};
 
-        const formNextSession = {
-            module: e.target.id
-        };
+        const formNextSession = {module: e.target.id};
 
         let button = document.getElementById(e.target.id);
         let text = button.innerText;
@@ -211,10 +269,11 @@
                 .join('\n');
             document.getElementById('list').innerHTML = list;
         });
-
     }
 
     moduleButtons.addEventListener("click", moduleButtonsPressed);
+
+
 
     function newCellInRow(row, int, text){
         let newCell = row.insertCell(int);
