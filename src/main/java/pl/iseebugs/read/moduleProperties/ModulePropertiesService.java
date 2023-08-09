@@ -1,5 +1,6 @@
 package pl.iseebugs.read.moduleProperties;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,14 @@ public class ModulePropertiesService {
                 .collect(toList());
     }
 
-    public Optional <ModulePropertiesDTO> findById(int id){
-       return repository.findById(id).map(ModulePropertiesDTO::new);
+    ResponseEntity<ModuleProperties> updateProperties(ModulePropertiesDTO modulePropertiesDTO){
+        ModuleProperties moduleProperties = new ModuleProperties();
+        moduleProperties.setId(modulePropertiesDTO.getId());
+        moduleProperties.setSessionsPerDay(modulePropertiesDTO.getSessionsPerDay());
+        moduleProperties.setPresentationsPerSession(modulePropertiesDTO.getPresentationsPerSession());
+        moduleProperties.setNewSentencesPerDay(modulePropertiesDTO.getNewSentencesPerDay());
+        moduleProperties.setActualDay(modulePropertiesDTO.getActualDay());
+        moduleProperties.setNextSession(modulePropertiesDTO.getNextSession());
+       return ResponseEntity.ok(repository.save(moduleProperties));
     }
 }

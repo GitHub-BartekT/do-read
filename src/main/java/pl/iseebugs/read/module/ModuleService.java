@@ -51,7 +51,7 @@ class ModuleService {
         int startSentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
         int lastSentence = firstSentence + startSentence;
         List<ModuleDTO> list = repository
-                .findWszystkie(module)
+                .findOneModuleROWNUM(module)
                 .stream()
                 .map(ModuleDTO::new)
                 .collect(toList());
