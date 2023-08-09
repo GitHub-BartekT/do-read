@@ -188,19 +188,51 @@
         if(!isButton){ return}
         const formObj = {id: e.target.id};
 
-        let rowID = `${e.target.id}`;
-        let changeBtnID = "changeBtn" + rowID.substring(9);
-        let acceptChangeBtnID = "acceptChangesBtn" + rowID.substring(9);
+        let clickBtnID = `${e.target.id}`;
+        let rowID = clickBtnID.substring(9);
+        let checkButton = clickBtnID.substring(0,9);
+        let changeBtnID = "changeBtn" + rowID;
+        let acceptChangeBtnID = "acceptChangesBtn" + rowID;
 
-        //TODO: make if statment reading what is state of button
-        document.getElementById(changeBtnID).innerText = "Decline";
-        document.getElementById(`${e.target.id}`).classList.add("button-decline");
+        //TODO: change to switch statement and clean the below code
 
-        document.getElementById(acceptChangeBtnID).classList.remove("pure-button-disabled");
-        document.getElementById(acceptChangeBtnID).classList.add("pure-button-primary");
-        document.getElementById(acceptChangeBtnID).classList.add("button-accept");
+        //TODO: remove Click button
+        document.getElementById('welcome').innerHTML = clickBtnID;
 
-        document.getElementById('welcome').innerHTML = acceptChangeBtnID;
+        // Click "Change Module" button
+        if (checkButton === "changeBtn" && document.getElementById(changeBtnID).innerText === "Change module"){
+            document.getElementById(changeBtnID).innerText = "Decline";
+            document.getElementById(changeBtnID).classList.add("button-decline");
+
+            document.getElementById(acceptChangeBtnID).classList.remove("pure-button-disabled");
+            document.getElementById(acceptChangeBtnID).classList.add("pure-button-primary");
+            document.getElementById(acceptChangeBtnID).classList.add("button-accept");
+        }   // Click "Decline" button
+        else if(checkButton === "changeBtn" && document.getElementById(changeBtnID).innerText === "Decline"){
+            document.getElementById(changeBtnID).innerText = "Change module";
+            document.getElementById(changeBtnID).classList.remove("button-decline");
+            document.getElementById(changeBtnID).classList.add("pure-button-primary");
+
+            document.getElementById(acceptChangeBtnID).classList.remove("pure-button-primary");
+            document.getElementById(acceptChangeBtnID).classList.add("pure-button-disabled");
+            document.getElementById(acceptChangeBtnID).classList.remove("button-accept");
+
+        }   // Click "Decline" button
+        else if(checkButton === "acceptCha"){
+            let rowID = clickBtnID.substring(16);
+            let changeBtnID = "changeBtn" + rowID;
+            let acceptChangeBtnID = "acceptChangesBtn" + rowID;
+
+            document.getElementById(changeBtnID).innerText = "Change module";
+            document.getElementById(changeBtnID).classList.remove("button-decline");
+            document.getElementById(changeBtnID).classList.add("pure-button-primary");
+
+            document.getElementById(acceptChangeBtnID).classList.remove("pure-button-primary");
+            document.getElementById(acceptChangeBtnID).classList.add("pure-button-disabled");
+            document.getElementById(acceptChangeBtnID).classList.remove("button-accept");
+        }
+
+
     }
 
 
