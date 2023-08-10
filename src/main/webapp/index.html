@@ -188,21 +188,21 @@
         let rowID = clickBtnID.substring(9);
 
         let checkButton = clickBtnID.substring(0,9);
-
-
         let changeBtnID =       "changeBtn" + rowID;
         let acceptChangeBtnID = "acceptChangesBtn" + rowID;
+
+        let propertiesTable = document.getElementById("module-properties-table");
 
 
         // Click "Change Module" button
         if (checkButton === "changeBtn" && document.getElementById(changeBtnID).innerText === "Change module"){
-            let propertiesTable = document.getElementById("module-properties-table");
-            const row = propertiesTable.rows[rowID];
-            const cells = row.cells;
+            let row = propertiesTable.rows[rowID];
+            let cells = row.cells;
             changeBtnToDecline(changeBtnID);
             changeBtnToAccept(acceptChangeBtnID, true);
             for(let i = 1; i < 6; i++ ){
-                cellCreateLabel( cells[i], cells[i].innerText);
+                let labelId = `${rowID}${i}`;
+                cellCreateLabel( cells[i], cells[i].innerText, labelId);
             }
 
         }
@@ -215,12 +215,23 @@
 
         // Click "Accept" button
         else if(checkButton === "acceptCha"){
-            document.getElementById('welcome').innerText ="click";
+
             rowID = clickBtnID.substring(16);
             changeBtnID = "changeBtn" + rowID;
             acceptChangeBtnID = "acceptChangesBtn" + rowID;
             changeBtnToPrimary(changeBtnID, "Change module");
             changeBtnToAccept(acceptChangeBtnID, false);
+            let row = propertiesTable.rows[rowID];
+            let cells = row.cells;
+
+            for(let i = 1; i <6;i++){
+                let actualCell = document.getElementById(`${rowID}${i}`);
+                let cellText;
+                if (actualCell.value !== null) {
+                    cellText = actualCell.value;
+                }
+                cellPutPlainText(cells[i], cellText);
+            }
         }
     }
 
@@ -244,10 +255,13 @@
 */
     changeModuleButtons.addEventListener("click",changeModuleButtonsPressed);
 
-    function cellCreateLabel(parent, text){
-        const form = document.createElement("LABEL");
+    function cellCreateLabel(parent, text, id){
+        const form = document.createElement("label");
         parent.innerText = "";
-        form.innerHTML = `<input size=3 placeholder="${text}" />`;
+        //form.id = id;
+        form.innerHTML = `
+                                <input id="${id}" size=3 class="pure-input-rounded pure-u-1" value="${text}" />
+                          `;
         parent.appendChild(form);
     }
 
@@ -280,7 +294,6 @@
         document.getElementById(btnId).innerText = text;
     }
 
-
     //Add new sentence
     document.getElementById('Add sentence btn').addEventListener('click',addSentence);
 
@@ -303,11 +316,9 @@
     }
 
     function addSentenceToList(){
-
         let newSentenceText = document.getElementById('new sentence').value;
         document.getElementById('list').innerHTML += `<li>${newSentenceText}</li>`
     }
-
 
     const moduleButtons = document.getElementById('buttons');
     const moduleButtonsPressed = e => {
@@ -345,8 +356,6 @@
     }
 
     moduleButtons.addEventListener("click", moduleButtonsPressed);
-
-
 
     function newCellInRow(row, int, text){
         let newCell = row.insertCell(int);
