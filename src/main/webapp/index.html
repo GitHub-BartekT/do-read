@@ -204,13 +204,23 @@
                 let labelId = `${rowID}${i}`;
                 cellCreateLabel( cells[i], cells[i].innerText, labelId);
             }
-
         }
 
         // Click "Decline" button
         else if (checkButton === "changeBtn" && document.getElementById(changeBtnID).innerText === "Decline"){
             changeBtnToPrimary(changeBtnID, "Change module");
             changeBtnToAccept(acceptChangeBtnID, false);
+            let row = propertiesTable.rows[rowID];
+            let cells = row.cells;
+
+            for(let i = 1; i <6;i++){
+                let actualCell = document.getElementById(`${rowID}${i}`);
+                let cellText;
+                if (actualCell.placeholder !== null) {
+                    cellText = actualCell.placeholder;
+                }
+                cellPutPlainText(cells[i], cellText);
+            }
         }
 
         // Click "Accept" button
@@ -259,9 +269,9 @@
         const form = document.createElement("label");
         parent.innerText = "";
         //form.id = id;
-        form.innerHTML = `
-                                <input id="${id}" size=3 class="pure-input-rounded pure-u-1" value="${text}" />
-                          `;
+        form.innerHTML =    `<input id="${id}" size=3
+                            class="pure-input-rounded pure-u-1" value="${text}" placeholder="${text}"/>
+                            `;
         parent.appendChild(form);
     }
 
