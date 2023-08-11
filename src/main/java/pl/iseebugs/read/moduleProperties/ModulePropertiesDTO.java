@@ -17,6 +17,8 @@ public  class ModulePropertiesDTO {
         this.nextSession = moduleProperties.getNextSession();
     }
 
+    public ModulePropertiesDTO (){}
+
     public int getId() {
         return id;
     }

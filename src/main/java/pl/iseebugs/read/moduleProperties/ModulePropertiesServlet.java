@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/moduleProperties")
 public class ModulePropertiesServlet {
     private final Logger logger = LoggerFactory.getLogger(ModulePropertiesServlet.class);
 
@@ -16,15 +16,15 @@ public class ModulePropertiesServlet {
 
     ModulePropertiesServlet(ModulePropertiesService service){this.service = service;}
 
-    @GetMapping("/moduleProperties")
+    @GetMapping
     ResponseEntity<List<ModulePropertiesDTO>> findALLModuleProperties(){
         logger.info("Get Request");
         return ResponseEntity.ok(service.findALL());
     }
 
-    @PutMapping("/moduleProperties")
-    ResponseEntity<ModuleProperties> updateProperties (@RequestBody ModulePropertiesDTO modulePropertiesDTO){
+    @PutMapping(params = {"id"})
+    ResponseEntity<ModuleProperties> updateProperties (@RequestParam(value = "id") Integer id, @RequestBody ModulePropertiesDTO modulePropertiesDTO){
         logger.info("Put Request");
-        return service.updateProperties(modulePropertiesDTO);
+        return service.updateProperties(id, modulePropertiesDTO);
     }
 }

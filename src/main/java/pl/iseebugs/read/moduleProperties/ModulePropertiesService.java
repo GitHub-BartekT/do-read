@@ -23,14 +23,21 @@ public class ModulePropertiesService {
                 .collect(toList());
     }
 
-    ResponseEntity<ModuleProperties> updateProperties(ModulePropertiesDTO modulePropertiesDTO){
-        ModuleProperties moduleProperties = new ModuleProperties();
-        moduleProperties.setId(modulePropertiesDTO.getId());
+
+    Optional<ModuleProperties> findById(Integer id) {
+        return repository.findById(id);
+    }
+
+    ResponseEntity<ModuleProperties> updateProperties(int id, ModulePropertiesDTO modulePropertiesDTO){
+        ModuleProperties moduleProperties = findById(id)
+                .orElseThrow();
+
         moduleProperties.setSessionsPerDay(modulePropertiesDTO.getSessionsPerDay());
         moduleProperties.setPresentationsPerSession(modulePropertiesDTO.getPresentationsPerSession());
         moduleProperties.setNewSentencesPerDay(modulePropertiesDTO.getNewSentencesPerDay());
         moduleProperties.setActualDay(modulePropertiesDTO.getActualDay());
         moduleProperties.setNextSession(modulePropertiesDTO.getNextSession());
-       return ResponseEntity.ok(repository.save(moduleProperties));
+
+        return ResponseEntity.ok(repository.save(moduleProperties));
     }
 }

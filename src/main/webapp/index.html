@@ -104,6 +104,7 @@
 <script>
     const API_URL = 'http://localhost:8080/api';
     const MODULE_API_URL = `${API_URL}/module`;
+    const PROPERTIES_API_URL = `${API_URL}/moduleProperties`;
 
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
@@ -143,7 +144,7 @@
             });
         });
 
-    fetch(`${API_URL}/moduleProperties`)
+    fetch(`${PROPERTIES_API_URL}`)
         .then((response) => response.json())
         .then((modulesPropArr) => {
                 modulesPropArr.map(s => {
@@ -151,12 +152,14 @@
                 let row = table.insertRow(-1);
 
                 newCellInRow(row, 0, s.id);
+
                 newCellInRow(row, 1, s.sessionsPerDay);
                 newCellInRow(row, 2, s.presentationsPerSession);
                 newCellInRow(row, 3, s.newSentencesPerDay);
                 newCellInRow(row, 4, s.actualDay);
                 newCellInRow(row, 5, s.nextSession);
-
+                let cells = row.cells;
+                    cells[0].id = `${s.id}0`;
                 //TODO: merge to one function. ONE
                 let newCell = row.insertCell(6);
                 const newButton = document.createElement("div");
@@ -226,43 +229,64 @@
         // Click "Accept" button
         else if(checkButton === "acceptCha"){
 
-            rowID = clickBtnID.substring(16);
-            changeBtnID = "changeBtn" + rowID;
-            acceptChangeBtnID = "acceptChangesBtn" + rowID;
+            let rowId = clickBtnID.substring(16);
+            changeBtnID = "changeBtn" + rowId;
+            acceptChangeBtnID = "acceptChangesBtn" + rowId;
             changeBtnToPrimary(changeBtnID, "Change module");
             changeBtnToAccept(acceptChangeBtnID, false);
-            let row = propertiesTable.rows[rowID];
+            let row = propertiesTable.rows[rowId];
             let cells = row.cells;
 
-            for(let i = 1; i <6;i++){
-                let actualCell = document.getElementById(`${rowID}${i}`);
+            updateParameters(rowId);
+
+         /*   for(let i = 1; i <6;i++){
+                let actualCell = document.getElementById(`${rowId}${i}`);
                 let cellText;
                 if (actualCell.value !== null) {
                     cellText = actualCell.value;
                 }
                 cellPutPlainText(cells[i], cellText);
-            }
+            }*/
         }
     }
 
- /*   function updateParameters(rowID){
-        const paramAddSentence = {
-            sentence: document.getElementById('new sentence').value,
-            module: document.getElementById('moduleNumber').innerHTML
-        };
 
-        fetch(`${MODULE_API_URL}`,
+//TODO PUT PUT PUT PUT
+    function updateParameters(rowId){
+        const paramUpdateProperties = {
+            sessionsPerDay: document.getElementById(`${rowId}1`).value,
+            presentationsPerSession:  document.getElementById(`${rowId}2`).value,
+            newSentencesPerDay: document.getElementById(`${rowId}3`).value,
+            actualDay: document.getElementById(`${rowId}4`).value,
+            nextSession: document.getElementById(`${rowId}5`).value
+        };
+        const formId = {id: document.getElementById(`${rowId}0`).innerText};
+        fetch(`${PROPERTIES_API_URL}?${new URLSearchParams(formId)}`,
             {   method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': `application/json`
                 },
-                body: JSON.stringify(paramAddSentence)}
-        )
-            .then(processOkResponse)
-            .then(addSentenceToList);
+                body: JSON.stringify(paramUpdateProperties)}
+           ).then(response => response.json())
+            .then(s => {
+                let propertiesTable = document.getElementById("module-properties-table");
+                let row = propertiesTable.rows[rowId];
+                let cells = row.cells;
+                cellPutPlainText(cells[0], s.id);
+                cellPutPlainText(cells[1], s.sessionsPerDay);
+                cellPutPlainText(cells[2], s.presentationsPerSession);
+                cellPutPlainText(cells[3], s.newSentencesPerDay);
+                cellPutPlainText(cells[4], s.actualDay);
+                cellPutPlainText(cells[5], s.nextSession);
+    });
     }
-*/
+
+
+    //TODO PUT PUT PUT PUT
+
+
+
     changeModuleButtons.addEventListener("click",changeModuleButtonsPressed);
 
     function cellCreateLabel(parent, text, id){
