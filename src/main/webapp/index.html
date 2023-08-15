@@ -7,6 +7,28 @@
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 <body>
+<main style="width: 25%; margin: 0 auto">
+    <h1 style="text-align: center"><span style="color: #a81818">do read</span></h1>
+    <ol>
+        <div id="new session buttons">
+                <style>
+                .button-newSession
+                {
+                    color: white;
+                    border-radius: 4px;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                }
+                .button-xlarge {
+                    font-size: 300%;
+                }
+                </style>
+        </div>
+    </ol>
+</main>
+
+
+
+
 <main style="width: 70%; margin: 0 auto">
     <div id="welcome" style="text-align: center">
         <h1><span style="color: #a81818">do read</span></h1>
@@ -105,6 +127,22 @@
     const API_URL = 'http://localhost:8080/api';
     const MODULE_API_URL = `${API_URL}/module`;
     const PROPERTIES_API_URL = `${API_URL}/moduleProperties`;
+
+    createStartSessionButtons();
+
+    //TODO
+    function createStartSessionButtons(){
+        fetch(`${API_URL}/allModules`)
+            .then((response) => response.json())
+            .then((modulesPropArr) => {
+                modulesPropArr.map((s) => {
+                    let tempParent = document.getElementById("new session buttons");
+                    const newSessionBtn = document.createElement("button");
+                    newSessionBtn.innerHTML = `<button id="${s.id}${s.module_Name}" class="pure-button button-xlarge" >${s.id}. ${s.module_Name}</button><br><br />`;
+                    tempParent.appendChild(newSessionBtn);
+                });
+    });}
+
 
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
@@ -234,24 +272,10 @@
             acceptChangeBtnID = "acceptChangesBtn" + rowId;
             changeBtnToPrimary(changeBtnID, "Change module");
             changeBtnToAccept(acceptChangeBtnID, false);
-            let row = propertiesTable.rows[rowId];
-            let cells = row.cells;
-
             updateParameters(rowId);
-
-         /*   for(let i = 1; i <6;i++){
-                let actualCell = document.getElementById(`${rowId}${i}`);
-                let cellText;
-                if (actualCell.value !== null) {
-                    cellText = actualCell.value;
-                }
-                cellPutPlainText(cells[i], cellText);
-            }*/
         }
     }
 
-
-//TODO PUT PUT PUT PUT
     function updateParameters(rowId){
         const paramUpdateProperties = {
             sessionsPerDay: document.getElementById(`${rowId}1`).value,
@@ -281,11 +305,6 @@
                 cellPutPlainText(cells[5], s.nextSession);
     });
     }
-
-
-    //TODO PUT PUT PUT PUT
-
-
 
     changeModuleButtons.addEventListener("click",changeModuleButtonsPressed);
 
