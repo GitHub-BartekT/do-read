@@ -11,6 +11,7 @@
     <div id="welcome" style="text-align: center">
         <h1><span style="color: #a81818">do read</span></h1>
     </div>
+    <a href="index.html"><button id="changeProperties" class="pure-button button-xlarge" value="go">Back to main</button></a>
 
     <div id="Modules Properties" style="text-align: center">
         <h2>Modules Properties</h2>
@@ -107,13 +108,6 @@
     const PROPERTIES_API_URL = `${API_URL}/moduleProperties`;
 
     createStartSessionButtons();
-
-    /* const buttonProperties = document.getElementById("changeProperties");
-     buttonProperties.addEventListener("click",goChangeProperties);
-
-     function goChangeProperties(){
-         <A HREF="../katalog_równorzędny/nazwa_strony.html">
-     }*/
 
     function createStartSessionButtons(){
         fetch(`${API_URL}/allModules`)
@@ -294,7 +288,6 @@
     function cellCreateLabel(parent, text, id){
         const form = document.createElement("label");
         parent.innerText = "";
-        //form.id = id;
         form.innerHTML =    `<input id="${id}" size=3
                             class="pure-input-rounded pure-u-1" value="${text}" placeholder="${text}"/>
                             `;

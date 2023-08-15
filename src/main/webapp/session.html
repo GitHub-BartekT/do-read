@@ -2,9 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Session</title>
 </head>
 <body>
-
+<style>
+h1 {
+font-size: 125px;
+    color: #a81818;
+}</style>
+<h1><br></h1>
+<h1 id="current sentence" style="text-align: center"></h1>
+<ol>
+    <div id = "next session"></div>
+</ol>
 </body>
+
+<script>
+    const API_URL = 'http://localhost:8080/api';
+    const MODULE_API_URL = `${API_URL}/module`;
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const moduleId = urlParams.get('module');
+
+    const formNextSession = {module: moduleId};
+    const mySession = new Array();
+    let meter = 0;
+
+
+    fetch(`${MODULE_API_URL}?${new URLSearchParams(formNextSession)}`)
+        .then((response) => response.json())
+        .then((modulesArr) => {
+            const list = modulesArr.map(s =>
+                mySession.push(s.sentence));
+            //showSession(list);
+        });
+
+
+    document.addEventListener("keypress", nextSentence);
+
+    function nextSentence() {
+        if (meter < mySession.length) {
+            document.getElementById("current sentence").innerText = mySession.at(meter);
+            meter++;
+        } else {
+            document.getElementById("current sentence").innerText = "_ _ _";
+        }
+    }
+
+
+
+    function showSession(array){
+        for (let i=0; i < array.length; i ++){
+            document.getElementById('current sentence').innerHTML += mySession.at(i);
+        }
+    }
+</script>
 </html>

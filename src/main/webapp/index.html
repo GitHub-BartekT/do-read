@@ -21,9 +21,8 @@
             font-size: 300%;
         }
     </style>
-        <div id="new session buttons">
-        </div>
-    <a href="properties.html"><button id="changeProperties" class="pure-button button-xlarge" value="go">Properties</button></a>
+        <div id="new session buttons"></div>
+        <a href="properties.html"><button id="changeProperties" class="pure-button button-xlarge" value="go">Properties</button></a>
 </main>
 <script>
     const API_URL = 'http://localhost:8080/api';
@@ -37,7 +36,7 @@
                 modulesPropArr.map((s) => {
                     let tempParent = document.getElementById("new session buttons");
                     const newSessionBtn = document.createElement("button");
-                    newSessionBtn.innerHTML = `<button id="start${s.id}" class="pure-button button-xlarge button-newSession" >${s.id}. ${s.module_Name}</button><br><br />`;
+                    newSessionBtn.innerHTML = `<a href="session.html?module=${s.id}"><button id="start${s.id}" class="pure-button button-xlarge button-newSession" >${s.id}. ${s.module_Name}</button></a><br><br />`;
                     tempParent.appendChild(newSessionBtn);
                 });
     });}
