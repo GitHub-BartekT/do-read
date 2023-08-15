@@ -5,44 +5,15 @@
     <title>do read</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+            <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-
-<main style="width: 25%; margin: 0 auto">
-    <h1 style="text-align: center"><span style="color: #a81818">do read</span></h1>
-    <style>
-        .button-newSession
-        {
-            color: #a81818;
-            border-radius: 4px;
-            background: white;
-        }
-        .button-xlarge {
-            font-size: 300%;
-        }
-    </style>
-        <div id="new session buttons"></div>
-        <a href="properties.html"><button id="changeProperties" class="pure-button button-xlarge" value="go">Properties</button></a>
-</main>
-<script>
-    const API_URL = 'http://localhost:8080/api';
-
-    createStartSessionButtons();
-
-    function createStartSessionButtons(){
-        fetch(`${API_URL}/allModules`)
-            .then((response) => response.json())
-            .then((modulesPropArr) => {
-                modulesPropArr.map((s) => {
-                    if (s.active) {
-                        let tempParent = document.getElementById("new session buttons");
-                        const newSessionBtn = document.createElement("button");
-                        newSessionBtn.innerHTML = `<a href="session.html?module=${s.id}"><button id="start${s.id}" class="pure-button button-xlarge button-newSession" >${s.id}. ${s.module_Name}</button></a><br><br />`;
-                        tempParent.appendChild(newSessionBtn);
-                    }
-                });
-    });}
-    </script>
+    <main>
+        <h1>do read</h1>
+        <div id="new session buttons"  class="column"></div>
+        <a href="properties.html"><button id="changeProperties" class="pure-button button-properties column">Properties</button></a>
+    </main>
+    <script src="index.js"></script>
 </body>
 </html>
 
