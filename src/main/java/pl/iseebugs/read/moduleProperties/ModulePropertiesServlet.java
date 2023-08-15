@@ -27,4 +27,11 @@ public class ModulePropertiesServlet {
         logger.info("Put Request");
         return service.updateProperties(id, modulePropertiesDTO);
     }
+
+    @PutMapping(value = "/session", params = {"id"})
+    ResponseEntity<ModuleProperties> updateProperties (@RequestParam(value = "id") Integer id){
+        logger.info("Put Request");
+        return service.updateProperties(id);
+    }
+
 }

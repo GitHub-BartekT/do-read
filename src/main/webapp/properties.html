@@ -107,21 +107,6 @@
     const MODULE_API_URL = `${API_URL}/module`;
     const PROPERTIES_API_URL = `${API_URL}/moduleProperties`;
 
-    createStartSessionButtons();
-
-    function createStartSessionButtons(){
-        fetch(`${API_URL}/allModules`)
-            .then((response) => response.json())
-            .then((modulesPropArr) => {
-                modulesPropArr.map((s) => {
-                    let tempParent = document.getElementById("new session buttons");
-                    const newSessionBtn = document.createElement("button");
-                    newSessionBtn.innerHTML = `<button id="start${s.id}" class="pure-button button-xlarge button-newSession" >${s.id}. ${s.module_Name}</button><br><br />`;
-                    tempParent.appendChild(newSessionBtn);
-                });
-            });}
-
-
     fetch(`${API_URL}/allModules`)
         .then((response) => response.json())
         .then((modulesPropArr) => {

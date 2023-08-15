@@ -40,4 +40,16 @@ public class ModulePropertiesService {
 
         return ResponseEntity.ok(repository.save(moduleProperties));
     }
+
+    ResponseEntity<ModuleProperties> updateProperties(int id){
+        ModuleProperties moduleProperties = findById(id).orElseThrow();
+
+        if (moduleProperties.getNextSession() == moduleProperties.getSessionsPerDay()){
+            moduleProperties.setActualDay(moduleProperties.getActualDay() + 1);
+            moduleProperties.setNextSession(1);
+        } else {
+            moduleProperties.setNextSession(moduleProperties.getNextSession()+1);
+        }
+        return ResponseEntity.ok(repository.save(moduleProperties));
+    }
 }
