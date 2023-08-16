@@ -7,6 +7,9 @@ In book “How to teach your baby to read” by Glenn and Janet Doman is describ
 Time of everyday learning is very short (less than a minute), but preparing and organizing necessary materials takes a lot of time and energy. After a few weeks many parents give up becouse of lack of time. 
 ### Solution
 Most of children watch cartoons. Program is compatible with the learning method of reading. In time when child is completle focussing on a screen parents can play sessions before cartoons.
+## Screenshots
+### Main meny
+
 ## Technologies
 1.  Backend
     - Environment - Intellij IDEA
@@ -23,19 +26,20 @@ Most of children watch cartoons. Program is compatible with the learning method 
     - HTTP
 4.  Frontend
     - HTML
+    - CSS
     - JavaScript 
-4.  Version Control
+5.  Version Control
     - Git / GitHub
 ## Features
 ### Version 1.0 - SNAPSHOT
-1.  Running on pc in a simple and fast way⛔
-2.  Showing big red text with white background⛔
-3.  Quick and easy changing texts during session⛔
+1.  Running on pc in a simple and fast way✅
+2.  Showing big red text with white background✅
+3.  Quick and easy changing texts during session✅
 4.  Database of basic words✅
 5.  Posiibility of edition belows features⛔
-    - sessions per day⛔
-    - presentations per session⛔
-    - new presentations per day⛔
+    - sessions per day✅
+    - presentations per session✅
+    - new presentations per day✅
     - changing text⛔
 ### Version 2.0
 1. Web application⛔

@@ -28,7 +28,7 @@ function nextSentence() {
     } else if (meter === mySession.length){
         updateParameters(moduleId);
     } else {
-        document.getElementById("current sentence").innerText = "end session";
+        document.getElementById("current sentence").innerText = "😀";
     }
     meter++;
 }
@@ -43,6 +43,6 @@ function updateParameters(moduleId){
             },}
     ).then(response => response.json())
         .then(s => {
-            document.getElementById("current sentence").innerText = "-";
+            document.getElementById("current sentence").innerText = "😀";
         });
 }
