@@ -1,12 +1,12 @@
 INSERT INTO module (sentence) VALUES ('mama');
 INSERT INTO module (sentence) VALUES ('tata');
 INSERT INTO module (sentence) VALUES ('brat');
-INSERT INTO module (sentence) VALUES ('siostra');
+INSERT INTO module (sentence) VALUES ('Marcin');
 INSERT INTO module (sentence) VALUES ('miś');
 INSERT INTO module (sentence) VALUES ('lala');
 INSERT INTO module (sentence) VALUES ('oko');
 INSERT INTO module (sentence) VALUES ('noga');
-INSERT INTO module (sentence) VALUES ('ręka');
+INSERT INTO module (sentence) VALUES ('siostra');
 INSERT INTO module (sentence) VALUES ('dom');
 INSERT INTO module (sentence, module) VALUES ('mamy', 2);
 INSERT INTO module (sentence, module) VALUES ('dady', 2);
