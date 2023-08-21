@@ -50,16 +50,22 @@ class ModuleService {
         int firstSentence = modulePropertiesRepository.findById(module).get().getActualDay() - 1;
         int startSentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
         int lastSentence = firstSentence + startSentence;
-        List<ModuleDTO> list = repository
+        List<ModuleDTO> moduleSentencesList = repository
                 .findOneModuleROWNUM(module)
                 .stream()
                 .map(ModuleDTO::new)
                 .collect(toList());
 
-       return list.stream()
-                .filter(i -> list.indexOf(i) >= firstSentence)
-                .filter(j -> list.indexOf(j) < lastSentence)
+        List<ModuleDTO> sessionSentences;
+        sessionSentences = moduleSentencesList.stream()
+                .filter(i -> moduleSentencesList.indexOf(i) >= firstSentence)
+                .filter(j -> moduleSentencesList.indexOf(j) < lastSentence)
                 .collect(toList());
+
+        ModuleOperation shuffleList = new ModuleOperation(sessionSentences);
+        shuffleList.mixSessionToLastSentence();
+
+        return shuffleList.getData();
     }
 
     ResponseEntity<Module> saveSentence(ModuleDTO moduleDTO) {
