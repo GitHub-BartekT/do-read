@@ -28,7 +28,7 @@ function nextSentence() {
     } else if (meter === mySession.length){
         updateParameters(moduleId);
     } else {
-        document.getElementById("current sentence").innerText = "😀";
+        backToMain("current sentence");
     }
     meter++;
 }
@@ -43,6 +43,12 @@ function updateParameters(moduleId){
             },}
     ).then(response => response.json())
         .then(s => {
-            document.getElementById("current sentence").innerText = "😀";
-        });
+       backToMain("current sentence");
+            });
+}
+
+function backToMain(elementId){
+    document.getElementById(elementId).innerHTML = `😀<br>
+    <a href="index.html">
+    <button class="pure-button button-xlarge" value="go">Back to main</button></a>`;
 }
