@@ -8,8 +8,12 @@ Time of everyday learning is very short (less than a minute), but preparing and 
 ### Solution
 Most of children watch cartoons. Program is compatible with the learning method of reading. In time when child is completle focussing on a screen parents can play sessions before cartoons.
 ## Screenshots
-### Main meny
-
+### Home paige
+![do read - main menu](https://github.com/GitHub-BartekT/do-read/assets/119587290/d4a10fff-6a3a-4c35-8d7a-28653db2f5e9)
+### Session paige
+![do read - session](https://github.com/GitHub-BartekT/do-read/assets/119587290/cee13e7c-9fcb-464d-a3e4-cbe227e153c0)
+### Properties paige
+![do read - properties](https://github.com/GitHub-BartekT/do-read/assets/119587290/76fc5819-2a23-4838-a259-72202fc1f6a1)
 ## Technologies
 1.  Backend
     - Environment - Intellij IDEA
