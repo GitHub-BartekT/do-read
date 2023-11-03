@@ -17,14 +17,10 @@ class ModuleService {
     private ModuleRepository repository;
     private ModulePropertiesRepository modulePropertiesRepository;
 
-
     ModuleService(ModuleRepository repository, ModulePropertiesRepository modulePropertiesRepository){
         this.repository = repository;
         this.modulePropertiesRepository = modulePropertiesRepository;
     }
-
-
-
 
     List<ModuleDTO> findALL(){
         return repository
@@ -46,7 +42,6 @@ class ModuleService {
     //TODO :: starting point of each module (table id - no; "module id" - yes)
 
     List<ModuleDTO> nextSession(Integer module){
-
         int firstSentence = modulePropertiesRepository.findById(module).get().getActualDay() - 1;
         int startSentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
         int lastSentence = firstSentence + startSentence;

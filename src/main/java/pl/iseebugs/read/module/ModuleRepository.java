@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Integer> {
 
-@Query(value =  "SELECT ROWNUM(), * FROM module WHERE module = :id",
+    @Query(value =  "SELECT ROWNUM(), * FROM module WHERE module = :id",
         nativeQuery = true)
 List<Module> findOneModuleROWNUM(Integer id);
 }
