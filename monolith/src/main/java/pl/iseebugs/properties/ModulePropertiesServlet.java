@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/moduleProperties")
-public class ModulePropertiesServlet {
+class ModulePropertiesServlet {
     private final Logger logger = LoggerFactory.getLogger(ModulePropertiesServlet.class);
 
     private ModulePropertiesService service;

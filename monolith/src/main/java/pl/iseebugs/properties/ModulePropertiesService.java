@@ -8,7 +8,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 @Service
-public class ModulePropertiesService {
+class ModulePropertiesService {
     private ModulePropertiesRepository repository;
 
     public ModulePropertiesService(ModulePropertiesRepository repository){
