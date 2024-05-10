@@ -1,0 +1,14 @@
+Business goals
+
+Major
+- Wykonanie projektu w architekturze heksagonalnej z podziałem na moduły
+- Security z dostępem użytkowników do zasobów w zależności od stopnia widoczności
+  1. użytkownik niezalogowany - zasób dostępny dla wszystkich
+  - uzytkownik zalogowany
+    2. zasób dostępny dla wszystkich zalogowanych
+    3. zasób dostępny tylko dla konkretnego użytkownika
+- Wykorzystanie CQRS w praktyce
+
+Minor
+- Deploy na AWS
+- Frontend w Angular

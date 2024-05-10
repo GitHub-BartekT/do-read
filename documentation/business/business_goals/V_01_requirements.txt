@@ -1,0 +1,48 @@
+Program do szybkiej nauki czytania dla dzieci metodą globalną.
+
+Krótki opis:
+Nauka metodą globalną polega na szybkim pokazywaniu dziecku następujących po sobie słów.
+Podczas pokazywania słów należy głośno je przeczytać.
+W ciągu dnia jest kilka sessji najczęściej 3.
+Na początku nauki pokazywane są proste słowa z biegiem czasu wyrażenia składające się z dwóch słów, a na koniec pełne zdania.
+Nowe słowa danego dnia powinno w każdej sesji być pokazywane jako pierwsze.
+Kolejne słowa powinny być pokazywane w kolejności losowej.
+Najprostrzy schemat dnia:
+   5 słów pokazywanych w 3 sesjach.
+   Wśród tych pięciu słów jedno jest nowe. Nowe słowo zastępuje słowo o najdłużyszm "stażu".
+Słowa mają byc pokazywane szybko. (prostota pokazywania nowego słowa)
+Słowa są "duże" w kolorze czerwonym. W miarę postępów czcionka się zmniejsza a kolor zmienia na czarny.
+Tło białe.
+
+Główne założenia i wymagania
+1 wymaganie logowania użytkowników
+2 każdy użytkownik ma niezależność danych
+3 podział na moduły
+4 każdego modułu mozna uczyć się oddzielnie i są niezależne od siebie
+5 postępy nauki sa na bierząco aktualizowane
+6 użytkownik ma możliwość
+7   modyfikacji modułu
+8   dodanie nowego
+9   usunięcie swojego modułu
+
+Dodatkowe wymagania
+1. Kolekcje
+10   możliwość łączenia modułów w kolekcje
+11   kolekcje pozwalają tylko na modyfikacje właściwości kolekcji,
+bez modyfikacji poszczególnych modułów
+
+2. Zakres widoczności modułów
+12   Widoczność modułów jest podzielnowa na 3 poziomu od najszerszego
+13   a. moduły widoczne dla wszystkich użytkowników zalogowanych i niezalogowanych
+(możliwość przetestowania aplikacji bez konieczności logowania)
+14   b. moduły widoczne dla wszystkich zalogowanych użytkowników
+(kilka predefiniowanych modułów najczęściej używanych bez konieczności tworzenia ich przez użytkowników od zera)
+15   c. moduły widoczne tylko dla użytkownika zalogowanego
+(moduły prywatne)
+
+16   możliwość dodawania modułów a i b do prywatnych i edycja ich.
+17   brak możliwości edycji modułów a i b przez zwykłych użytkowników
+
+3. Rodzaje użytkowników
+18   uzytkownik zwykły
+19   moderator mający możliwość dodawania, usuwania i modyfikacji modułów a i b

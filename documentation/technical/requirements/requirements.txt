@@ -1,0 +1,9 @@
+1. Architektura         - Hexagonal architecture
+2. CQRS
+3. Testy integracyjne
+4. Dokumentacja API     - swagger
+5. Security
+6. Spring Boot
+7. Database             - if noSQL - MongoDB
+                          if relacyjne  - H2/other
+                                        - Flyway
