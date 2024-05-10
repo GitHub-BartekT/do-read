@@ -1,6 +1,6 @@
 package pl.iseebugs.properties;
 
-public  class ModulePropertiesDTO {
+public class PropertiesDTO {
     private int id;
     private int sessionsPerDay;
     private int presentationsPerSession;
@@ -8,7 +8,7 @@ public  class ModulePropertiesDTO {
     private int actualDay;
     private int nextSession;
 
-    public ModulePropertiesDTO(ModuleProperties moduleProperties) {
+    public PropertiesDTO(ModuleProperties moduleProperties) {
         this.id = moduleProperties.getId();
         this.sessionsPerDay = moduleProperties.getSessionsPerDay();
         this.presentationsPerSession = moduleProperties.getPresentationsPerSession();
@@ -17,7 +17,7 @@ public  class ModulePropertiesDTO {
         this.nextSession = moduleProperties.getNextSession();
     }
 
-    public ModulePropertiesDTO (){}
+    public PropertiesDTO(){}
 
     public int getId() {
         return id;

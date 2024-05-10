@@ -4,42 +4,43 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.iseebugs.ports.PropertiesService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class ModuleServlet{
-    private final Logger logger = LoggerFactory.getLogger(ModuleServlet.class);
+class ModuleController {
+    private final Logger logger = LoggerFactory.getLogger(ModuleController.class);
 
-    private ModuleService service;
+    private final ModuleService moduleService;
 
-    ModuleServlet(ModuleService service){
-        this.service = service;
+    ModuleController(ModuleService moduleService){
+        this.moduleService = moduleService;
     }
 
     @GetMapping("/module")
     ResponseEntity<List<ModuleDTO>> findALLModule(){
         logger.info("Get Request");
-        return ResponseEntity.ok(service.findALL());
+        return ResponseEntity.ok(moduleService.findALL());
     }
 
 
     @GetMapping (value = "/module", params = {"id"})
         ResponseEntity<List<ModuleDTO>> findModuleSentences(@RequestParam("id") Integer id){
         logger.info("Get Request param: id " + id);
-        return ResponseEntity.ok(service.findOneModuleById(id));
+        return ResponseEntity.ok(moduleService.findOneModuleById(id));
     }
 
     @GetMapping (value = "/module", params = {"module"})
         ResponseEntity<List<ModuleDTO>> showNextSession(@RequestParam("module") Integer module){
         logger.info("Get Request param: module " + module);
-        return ResponseEntity.ok(service.nextSession(module));
+        return ResponseEntity.ok(moduleService.nextSession(module));
     }
 
     @PostMapping("/module")
     ResponseEntity<Module> createSentence(@RequestBody ModuleDTO moduleDTO){
-        return service.saveSentence(moduleDTO);
+        return moduleService.saveSentence(moduleDTO);
     }
 
 }

@@ -1,6 +1,6 @@
 package pl.iseebugs.module;
 
-class ModuleDTO {
+public class ModuleDTO {
     private int id;
     private String sentence;
     private int module;

@@ -9,14 +9,14 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 class AllModulesService {
-    private AllModulesRepository repository;
+    private final AllModulesRepository allModulesRepository;
 
-    AllModulesService(AllModulesRepository repository){
-        this.repository = repository;
+    AllModulesService(AllModulesRepository allModulesRepository){
+        this.allModulesRepository = allModulesRepository;
     }
 
     List<AllModulesDTO> findALL(){
-        return repository
+        return allModulesRepository
                 .findAll()
                 .stream()
                 .map(AllModulesDTO::new)
@@ -24,6 +24,6 @@ class AllModulesService {
     }
 
     Optional<AllModules> findById(Integer id){
-        return repository.findById(id);
+        return allModulesRepository.findById(id);
     }
 }

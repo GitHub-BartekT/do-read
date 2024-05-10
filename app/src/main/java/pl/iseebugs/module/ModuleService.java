@@ -10,16 +10,16 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 class ModuleService {
-    private ModuleRepository repository;
-    private ModulePropertiesRepository modulePropertiesRepository;
+    private final ModuleRepository moduleRepository;
+    private final ModulePropertiesRepository modulePropertiesRepository;
 
-    ModuleService(ModuleRepository repository, ModulePropertiesRepository modulePropertiesRepository){
-        this.repository = repository;
+    ModuleService(ModuleRepository moduleRepository, ModulePropertiesRepository modulePropertiesRepository){
+        this.moduleRepository = moduleRepository;
         this.modulePropertiesRepository = modulePropertiesRepository;
     }
 
     List<ModuleDTO> findALL(){
-        return repository
+        return moduleRepository
                 .findAll()
                 .stream()
                 .map(ModuleDTO::new)
@@ -27,7 +27,7 @@ class ModuleService {
     }
 
     List<ModuleDTO> findOneModuleById(Integer module){
-        return repository
+        return moduleRepository
                 .findAll()
                 .stream()
                 .filter(s -> s.getModule() == module)
@@ -41,7 +41,7 @@ class ModuleService {
         int firstSentence = modulePropertiesRepository.findById(module).get().getActualDay() - 1;
         int startSentence = modulePropertiesRepository.findById(module).get().getPresentationsPerSession();
         int lastSentence = firstSentence + startSentence;
-        List<ModuleDTO> moduleSentencesList = repository
+        List<ModuleDTO> moduleSentencesList = moduleRepository
                 .findOneModuleROWNUM(module)
                 .stream()
                 .map(ModuleDTO::new)
@@ -63,7 +63,7 @@ class ModuleService {
         Module module = new Module();
         module.setSentence(moduleDTO.getSentence());
         module.setModule(moduleDTO.getModule());
-        return ResponseEntity.ok(repository.save(module));
+        return ResponseEntity.ok(moduleRepository.save(module));
     }
 
   }

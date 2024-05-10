@@ -2,7 +2,7 @@ package pl.iseebugs.module;
 
 import java.util.*;
 
-public class ModuleOperation {
+class ModuleOperation {
     private List<ModuleDTO> data;
 
     public ModuleOperation(List<ModuleDTO> list) {
