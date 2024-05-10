@@ -11,20 +11,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class AllModulesServlet {
-    private final Logger logger = LoggerFactory.getLogger(AllModulesServlet.class);
+class AllModulesController {
+    private final Logger logger = LoggerFactory.getLogger(AllModulesController.class);
 
-    private AllModulesService service;
+    private final AllModulesService allModulesService;
 
-
-    AllModulesServlet(AllModulesService service){
-        this.service = service;
+    AllModulesController(AllModulesService allModulesService){
+        this.allModulesService = allModulesService;
     }
 
     @GetMapping("/allModules")
     ResponseEntity<List<AllModulesDTO>> findALL(){
         logger.info("Get Request");
-        return ResponseEntity.ok(service.findALL());
+        return ResponseEntity.ok(allModulesService.findALL());
     }
 
 }

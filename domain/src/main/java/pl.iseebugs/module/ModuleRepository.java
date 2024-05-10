@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<Module, Integer> {
+interface ModuleRepository extends JpaRepository<Module, Integer> {
 
     @Query(value =  "SELECT ROWNUM(), * FROM module WHERE module = :id",
         nativeQuery = true)
-List<Module> findOneModuleROWNUM(Integer id);
+    List<Module> findOneModuleROWNUM(Integer id);
 }
