@@ -1,0 +1,49 @@
+uzytkownik - osoba zalogowana
+gość - osoba niezalogowana
+
+
+1.  Jako gość,
+      chcę przejżeć przykładowe moduły,
+        więc będę mógł wypróbować aplikację bez konieczności logowania.
+
+2.  Jako gość,
+      chcę mieć możliwość logowania,
+        więc będę mógł korzystać z całej aplikacji.
+
+3.  Jako użytkownik,
+      chcę aby moje postępy w pracy z modułami były na bierząco zapisywane,
+        więc przy każdej nowej sesji nie będę zaczynał pracy od zera.
+
+3.  Jako użytkownik,
+      chcę mieć możliwość dodawania własnych modułów,
+        więc będę indywidualnie według potrzeb stworzyć swój moduł np. z nowym językiem.
+
+4. Jako użytkownik,
+     chcę mieć możliwość usuwania własnych modułów,
+        więć będę miał "porządek" w moich modułach.
+
+5. Jako użytkownik,
+     chcę mieć możliwość modyfikowania ustawień poszczególnych modułów jak:
+           - ilość sesji dziennie
+           - prezentacji na sesję
+       więc będę mógł dostosować moduły do własnych potrzeb.
+
+6. Jako uzytkownik,
+     chcę mieć możliwość skopiowania modułów "publicznych" do prywatnych,
+       więc nie będę musiał ich tworzyć od zera.
+
+7. Jako użytkownik,
+    chcę zaraz po stworzeniu konta mieć co najmniej jeden aktywny moduł,
+      więc będę mógł przetestować aplikację bez konieczności tworzenia ich od zera.
+
+8. Jako użytkownik,
+   chcę mieć możliwość tworzenia kolekcji z kilku modułów,
+     więc zaoszczędzi mi to czasu gdyż nie będę musiał przeklikiwać każdego moduły z osobna.
+
+8. Jako moderator,
+   chcę mieć możliwość tworzenia, usuwania i moderowania modułów publicznych,
+     więc użytkownicy będą mieli do nich dostęp.
+
+9. Jako gość,
+     chcę mieć możliwość zalogowania się na przykładowe konto gościa,
+       więć nie będę musiał tworzyć konta aby sprawdzić jak działa aplikacja w praktyce.
