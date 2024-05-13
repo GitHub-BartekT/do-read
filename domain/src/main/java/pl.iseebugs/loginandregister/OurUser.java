@@ -4,10 +4,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Document(collection = "ouruser")
 class OurUser {
     @Id
-    private long id;
+    private UUID id;
     @Indexed(unique = true)
     private String username;
     private String password;
@@ -22,7 +24,7 @@ class OurUser {
         this.roles = builder.roles;
     }
 
-    long getId() {
+    UUID getId() {
         return id;
     }
 
@@ -39,14 +41,14 @@ class OurUser {
     }
 
     public static class Builder{
-        private long id;
+        private UUID id;
         private String username;
         private String password;
         private String roles;
 
         public Builder(){}
 
-        public Builder id(long id){
+        public Builder id(UUID id){
             this.id = id;
             return this;
         }

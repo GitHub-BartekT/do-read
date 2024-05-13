@@ -3,13 +3,13 @@ package pl.iseebugs.loginandregister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.iseebugs.loginandregister.projection.RegisterResultReadModel;
 import pl.iseebugs.loginandregister.projection.UserReadModel;
 import pl.iseebugs.loginandregister.projection.UserWriteModel;
 import pl.iseebugs.ports.LoginAndRegisterService;
+
+import java.util.UUID;
 
 
 @Service
@@ -46,6 +46,7 @@ class LoginAndRegisterFacade implements LoginAndRegisterService {
         OurUser toSave = new OurUser.Builder()
                 .password(userWriteModel.getPassword())
                 .username(userWriteModel.getUsername())
+                .id(UUID.randomUUID())
                 .roles("USER")
                 .build();
 

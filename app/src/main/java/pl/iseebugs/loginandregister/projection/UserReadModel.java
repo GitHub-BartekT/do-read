@@ -1,7 +1,9 @@
 package pl.iseebugs.loginandregister.projection;
 
+import java.util.UUID;
+
 public class UserReadModel {
-    private final long id;
+    private final UUID id;
     private final String username;
     private final String password;
     private final String roles;
@@ -14,14 +16,14 @@ public class UserReadModel {
     }
 
     public static class Builder{
-        private long id;
+        private UUID id;
         private String username;
         private String password;
         private String roles;
 
         public Builder(){}
 
-        public Builder id(long id){
+        public Builder id(UUID id){
             this.id = id;
             return this;
         }
