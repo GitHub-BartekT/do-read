@@ -15,7 +15,7 @@ Słowa są "duże" w kolorze czerwonym. W miarę postępów czcionka się zmniej
 Tło białe.
 
 Główne założenia i wymagania
-1 wymaganie logowania użytkowników
+Done - 1 wymaganie logowania użytkowników
 2 każdy użytkownik ma niezależność danych
 3 podział na moduły
 4 każdego modułu mozna uczyć się oddzielnie i są niezależne od siebie
@@ -44,5 +44,5 @@ bez modyfikacji poszczególnych modułów
 17   brak możliwości edycji modułów a i b przez zwykłych użytkowników
 
 3. Rodzaje użytkowników
-18   uzytkownik zwykły
+18   użytkownik zwykły
 19   moderator mający możliwość dodawania, usuwania i modyfikacji modułów a i b

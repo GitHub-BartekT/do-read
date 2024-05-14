@@ -8,6 +8,22 @@ public class UserReadModel {
     private final String password;
     private final String roles;
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
     UserReadModel(Builder builder){
         this.id = builder.id;
         this.username = builder.username;

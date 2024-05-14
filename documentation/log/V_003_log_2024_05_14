@@ -1,0 +1,26 @@
+DOING:
+1. Security
+    b. token
+
+TODO:
+1. API ports
+  a. for module
+    - command
+    - query
+  b. for sentence
+    - command
+    - query
+TODO:
+2. data schema
+
+DONE:
+    1.Security model.
+    2.Security chain.
+
+LOGBOOK:
+2024_05_14:
+    1. Add Security chain
+2024_05_13:
+    1. Add User_Stories number 9    - V_001
+    2. Add technical requirements   - V_002
+    3. Divide modules               - V_002

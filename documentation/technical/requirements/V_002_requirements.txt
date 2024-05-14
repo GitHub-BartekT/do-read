@@ -8,6 +8,5 @@
     Dodanie Uzytkownika "Guest" prz starcie aplikacji
         Dane użytkownika powinny być okresowo resetowane do początkowych wartości.
 6. Spring Boot
-7. Database             - if noSQL - MongoDB
-                          if relational     - H2/other
-                                            - Flyway
+7. Database             - noSQL - MongoDB
+

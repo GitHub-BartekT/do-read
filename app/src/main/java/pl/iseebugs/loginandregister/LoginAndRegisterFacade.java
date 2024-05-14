@@ -3,6 +3,7 @@ package pl.iseebugs.loginandregister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import pl.iseebugs.loginandregister.projection.RegisterResultReadModel;
 import pl.iseebugs.loginandregister.projection.UserReadModel;
@@ -25,7 +26,7 @@ class LoginAndRegisterFacade implements LoginAndRegisterService {
     }
 
     @Override
-    public UserReadModel findByUsername(final String username) throws Exception {
+    public UserReadModel findByUsername(final String username) throws BadCredentialsException {
         return ourUserRepository.findByUsername(username)
                 .map(user -> new UserReadModel.Builder()
                         .username(user.getUsername())
@@ -33,7 +34,7 @@ class LoginAndRegisterFacade implements LoginAndRegisterService {
                         .id(user.getId())
                         .roles(user.getRoles())
                         .build())
-                .orElseThrow(() -> new Exception(USER_NOT_FOUND));
+                .orElseThrow(() -> new BadCredentialsException(USER_NOT_FOUND));
     }
 
     @Override
