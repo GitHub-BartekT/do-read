@@ -1,7 +1,9 @@
 DOING:
-1. data schema
 
 TODO:
+1. API ports
+
+WAITING:
 1. API ports
   a. for module
     - command
@@ -9,12 +11,10 @@ TODO:
   b. for sentence
     - command
     - query
-TODO:
 
 DONE:
-    1.Security model.
-    2.Security chain.
-    3.Security token.
+    2. Data model
+    1. Security + JWT
 
 LOGBOOK:
 2024_05_16:
