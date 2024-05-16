@@ -1,4 +1,4 @@
-package pl.iseebugs.loginandregister.projection;
+package pl.iseebugs.loginandregister;
 
 import java.util.UUID;
 

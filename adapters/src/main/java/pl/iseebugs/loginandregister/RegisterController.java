@@ -1,15 +1,12 @@
 package pl.iseebugs.loginandregister;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pl.iseebugs.loginandregister.projection.RegisterResultReadModel;
-import pl.iseebugs.loginandregister.projection.UserWriteModel;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 class RegisterController {
 
     LoginAndRegisterFacade loginAndRegisterFacade;
@@ -23,13 +20,22 @@ class RegisterController {
 
     @GetMapping("/")
     public String goHome(){
-        return "This is public access without any authentication. Some landing page.";
+        return "This is public access without any authentication. You should first signup at /api/auth/signup than login at /api/auth/signin.";
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<RegisterResultReadModel> response(@RequestBody UserWriteModel userWriteModel){
-        userWriteModel.setPassword(passwordEncoder.encode(userWriteModel.getPassword()));
-        RegisterResultReadModel registerResult = loginAndRegisterFacade.register(userWriteModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(registerResult);
+    @PostMapping("/signup")
+    public ResponseEntity<AuthReqRespDTO> signUp(@RequestBody AuthReqRespDTO signUpRequest){
+        return  ResponseEntity.ok(loginAndRegisterFacade.signUp(signUpRequest));
+    }
+
+
+    @PostMapping("/signin")
+    public ResponseEntity<AuthReqRespDTO> signIn(@RequestBody AuthReqRespDTO signInRequest){
+        return  ResponseEntity.ok(loginAndRegisterFacade.signIn(signInRequest));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthReqRespDTO> refreshToken(@RequestBody AuthReqRespDTO refreshTokenRequest){
+        return  ResponseEntity.ok(loginAndRegisterFacade.refreshToken(refreshTokenRequest));
     }
 }

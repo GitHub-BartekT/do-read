@@ -3,23 +3,37 @@ package pl.iseebugs.loginandregister;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import pl.iseebugs.loginandregister.projection.UserReadModel;
+import org.springframework.stereotype.Service;
 
+@Service
 class OurUserInfoDetailsService implements UserDetailsService {
+    private static final String USER_NOT_FOUND = "User not found";
 
-    LoginAndRegisterFacade loginAndRegisterFacade;
+    OurUserRepository ourUserRepository;
 
-    OurUserInfoDetailsService(LoginAndRegisterFacade loginAndRegisterFacade){
-        this.loginAndRegisterFacade = loginAndRegisterFacade;
+    OurUserInfoDetailsService(OurUserRepository ourUserRepository){
+        this.ourUserRepository = ourUserRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws BadCredentialsException {
-        UserReadModel user = loginAndRegisterFacade.findByUsername(username);
+        UserReadModel user = findByUsername(username);
         return getUser(user);
     }
 
     private OurUserInfoDetails getUser(UserReadModel userReadModel){
         return new OurUserInfoDetails(userReadModel);
+    }
+
+
+    public UserReadModel findByUsername(final String username) throws BadCredentialsException {
+        return ourUserRepository.findByUsername(username)
+                .map(user -> new UserReadModel.Builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .id(user.getId())
+                        .roles(user.getRoles())
+                        .build())
+                .orElseThrow(() -> new BadCredentialsException(USER_NOT_FOUND));
     }
 }

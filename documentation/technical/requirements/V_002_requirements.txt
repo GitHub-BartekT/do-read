@@ -5,7 +5,7 @@
 5. Security
     Security + JWT
         Identyfikacja użytkownika za pomocą Login - brak konieczności podawania maila
-    Dodanie Uzytkownika "Guest" prz starcie aplikacji
+        Dodanie Uzytkownika "Guest" prz starcie aplikacji
         Dane użytkownika powinny być okresowo resetowane do początkowych wartości.
 6. Spring Boot
 7. Database             - noSQL - MongoDB

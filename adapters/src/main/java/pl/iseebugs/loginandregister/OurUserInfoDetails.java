@@ -3,17 +3,23 @@ package pl.iseebugs.loginandregister;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.iseebugs.loginandregister.projection.UserReadModel;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 class OurUserInfoDetails implements UserDetails {
     private final String username;
     private final String password;
     private final List<GrantedAuthority> roles;
+
+    public OurUserInfoDetails(final String username, final String password, final List<GrantedAuthority> roles){
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public OurUserInfoDetails(UserReadModel userReadModel){
         this.username = userReadModel.getUsername();
@@ -25,7 +31,7 @@ class OurUserInfoDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
@@ -56,5 +62,14 @@ class OurUserInfoDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    OurUser toNewOurUser(){
+        return new OurUser.Builder()
+                .id(UUID.randomUUID())
+                .password(this.password)
+                .username(this.username)
+                .roles(roles.toString())
+                .build();
     }
 }

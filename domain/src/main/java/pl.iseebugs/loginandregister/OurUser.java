@@ -53,6 +53,7 @@ class OurUser {
             return this;
         }
 
+
         public Builder username(String username){
             this.username = username;
             return this;

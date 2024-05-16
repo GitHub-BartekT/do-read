@@ -1,6 +1,5 @@
 DOING:
-1. Security
-    b. token
+1. data schema
 
 TODO:
 1. API ports
@@ -11,13 +10,17 @@ TODO:
     - command
     - query
 TODO:
-2. data schema
 
 DONE:
     1.Security model.
     2.Security chain.
+    3.Security token.
 
 LOGBOOK:
+2024_05_16:
+    1. Add Security tokens:
+        Access token
+        Refresh token
 2024_05_14:
     1. Add Security chain
 2024_05_13:
