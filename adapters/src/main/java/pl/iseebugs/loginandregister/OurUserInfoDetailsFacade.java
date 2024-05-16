@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import pl.iseebugs.loginandregister.projection.UserReadModel;
 
 @Service
-class OurUserInfoDetailsService implements UserDetailsService {
+class OurUserInfoDetailsFacade implements UserDetailsService {
     private static final String USER_NOT_FOUND = "User not found";
 
     OurUserRepository ourUserRepository;
 
-    OurUserInfoDetailsService(OurUserRepository ourUserRepository){
+    OurUserInfoDetailsFacade(OurUserRepository ourUserRepository){
         this.ourUserRepository = ourUserRepository;
     }
 
@@ -27,7 +27,7 @@ class OurUserInfoDetailsService implements UserDetailsService {
     }
 
 
-    public UserReadModel findByUsername(final String username) throws BadCredentialsException {
+    UserReadModel findByUsername(final String username) throws BadCredentialsException {
         return ourUserRepository.findByUsername(username)
                 .map(user -> new UserReadModel.Builder()
                         .username(user.getUsername())

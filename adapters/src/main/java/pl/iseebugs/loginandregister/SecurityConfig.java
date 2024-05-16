@@ -34,7 +34,7 @@ class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/api/auth/","/api/register").permitAll()
+                        .requestMatchers("/", "/api/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
@@ -53,7 +53,7 @@ class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        return new OurUserInfoDetailsService(ourUserRepository);
+        return new OurUserInfoDetailsFacade(ourUserRepository);
     }
 
     @Bean

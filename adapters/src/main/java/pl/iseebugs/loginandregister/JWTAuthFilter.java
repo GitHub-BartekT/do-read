@@ -18,11 +18,11 @@ import java.io.IOException;
 class JWTAuthFilter extends OncePerRequestFilter {
 
     private final JWTUtils jwtUtils;
-    private final OurUserInfoDetailsService ourUserInfoDetailsService;
+    private final OurUserInfoDetailsFacade ourUserInfoDetailsFacade;
 
-    JWTAuthFilter(JWTUtils jwtUtils, OurUserInfoDetailsService ourUserInfoDetailsService){
+    JWTAuthFilter(JWTUtils jwtUtils, OurUserInfoDetailsFacade ourUserInfoDetailsFacade){
         this.jwtUtils = jwtUtils;
-        this.ourUserInfoDetailsService = ourUserInfoDetailsService;
+        this.ourUserInfoDetailsFacade = ourUserInfoDetailsFacade;
     }
 
     @Override
@@ -37,7 +37,7 @@ class JWTAuthFilter extends OncePerRequestFilter {
         jwtToken = authHeader.substring(7);
         userEmail = jwtUtils.extractUsername(jwtToken);
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = ourUserInfoDetailsService.loadUserByUsername(userEmail);
+            UserDetails userDetails = ourUserInfoDetailsFacade.loadUserByUsername(userEmail);
 
             if (jwtUtils.isTokenValid(jwtToken, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();

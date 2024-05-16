@@ -27,13 +27,17 @@ class LoginAndRegisterFacade {
         this.authenticationManager = authenticationManager;
     }
 
-    public AuthReqRespDTO signUp(AuthReqRespDTO registrationRequest){
+    AuthReqRespDTO signUp(AuthReqRespDTO registrationRequest){
         AuthReqRespDTO responseDTO = new AuthReqRespDTO();
         try {
             String username = registrationRequest.getUsername();
             String password = passwordEncoder.encode(registrationRequest.getPassword());
             List<GrantedAuthority> roles = new ArrayList<>();
             roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+            if (ourUserRepository.findByUsername(username).isPresent()) {
+                throw new RuntimeException("User " + username + " already exists");
+            }
 
             OurUserInfoDetails ourUserToSave = new OurUserInfoDetails(username, password, roles);
             OurUser ourUserResult = ourUserRepository.save(ourUserToSave.toNewOurUser());
@@ -48,13 +52,13 @@ class LoginAndRegisterFacade {
         return responseDTO;
     }
 
-    public AuthReqRespDTO signIn(AuthReqRespDTO signingRequest){
+    AuthReqRespDTO signIn(AuthReqRespDTO signingRequest){
         AuthReqRespDTO response = new AuthReqRespDTO();
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signingRequest.getUsername(),signingRequest.getPassword()));
             var user = ourUserRepository.findByUsername(signingRequest.getUsername()).orElseThrow();
-            System.out.println("USER IS: " + user);
+            System.out.println("USER IS: " + user.getUsername());
             UserDetails userToJWT = OurUserMapper.formEntityToUserDetails(user);
             var jwt = jwtUtils.generateToken(userToJWT);
             var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), userToJWT);
@@ -70,7 +74,7 @@ class LoginAndRegisterFacade {
         return response;
     }
 
-    public AuthReqRespDTO refreshToken(AuthReqRespDTO refreshTokenRegister){
+    AuthReqRespDTO refreshToken(AuthReqRespDTO refreshTokenRegister){
         AuthReqRespDTO response = new AuthReqRespDTO();
 
         String ourEmail = jwtUtils.extractUsername(refreshTokenRegister.getToken());
