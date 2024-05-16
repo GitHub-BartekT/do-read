@@ -72,8 +72,5 @@ class OurUser {
         OurUser build(){
             return new OurUser(this);
         }
-
     }
-
-
 }
