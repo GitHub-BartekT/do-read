@@ -24,12 +24,16 @@ class Module {
     private int actualModuleDay;
     private int nextSessionDuringDay;
 
+    Module(){}
+
     UUID getId() {
         return id;
     }
 
     void setId(final UUID id) {
-        this.id = id;
+        if (this.id == null) {
+            this.id = id;
+        }
     }
 
     String getUsername() {
