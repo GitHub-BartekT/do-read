@@ -12,6 +12,7 @@ class Module {
     private UUID id;
     private String username;
     private String name;
+    private String type;
 
     private boolean forLogUsers;
     private boolean forAllUsers;
@@ -37,6 +38,14 @@ class Module {
 
     void setUsername(final String username) {
         this.username = username;
+    }
+
+    String getType() {
+        return type;
+    }
+
+    void setType(final String type) {
+        this.type = type;
     }
 
     String getName() {
