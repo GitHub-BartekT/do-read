@@ -4,6 +4,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import pl.iseebugs.loginandregister.projection.UserReadModel;
 
 @Service
 class OurUserInfoDetailsService implements UserDetailsService {

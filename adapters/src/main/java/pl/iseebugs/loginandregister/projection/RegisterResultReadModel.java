@@ -1,4 +1,4 @@
-package pl.iseebugs.loginandregister;
+package pl.iseebugs.loginandregister.projection;
 
 public class RegisterResultReadModel {
     String username;
