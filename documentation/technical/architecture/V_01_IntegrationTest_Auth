@@ -1,0 +1,32 @@
+# checking authorization and authentication path:
+# User - "someTestUser", password='somePassword' - not registered
+# Access Token, Refresh Token
+# Endpoints:
+    # public
+    # logged users
+    # admin
+
+Step 1: User tried to get JWT token by requesting POST /auth/signin
+        with username='someTestUser', password='somePassword' and system returned UNAUTHORIZED
+Step 2: User made GET /public/modules and system returned OK(200) with some public module
+Step 3: User made GET /users/modules with no jwt token and system returned UNAUTHORIZED
+Step 4: User made GET /admin/modules with no jwt token and system returned UNAUTHORIZED
+Step 5: user made POST /auth/signup with username="someTestUser", password="someTestPassword"
+        and system registered user with status OK(200)
+Step 6: user made POST /auth/signup with username="someTestUser", password="someTestPassword"
+        and system registered user with status CONFLICT(409)
+Step 7: user tried to get JWT token by requesting POST /auth/signin with username="someTestUser", password="someTestPassword"
+        and system returned OK(200) and token=AAAA.BBBB.CCC and refreshToken=DDDD.EEEE.FFF
+Step 8: User made GET /users/modules with header “Authorization: DDDD.EEEE.FFF”
+        and system returned UNAUTHORIZED
+Step 9: user made GET /users/modules with header “Authorization: Bearer AAAA.BBBB.CCC”
+        and system returned OK(200) with some modules visible only to logged in users
+Step 11:    user made GET /admin/modules with header “Authorization: Bearer AAAA.BBBB.CCC”
+            and system returned UNAUTHORIZED
+Step 12:    the access token has expired
+Step 13:    User made GET /users/modules with header “Authorization: Bearer AAAA.BBBB.CCC”
+            and system returned UNAUTHORIZED
+Step 14:    User made POST /auth/refresh with body “{"token":"DDDD.EEEE.FFF”}"
+            and system returned OK(200) and token=GGGG.HHHH.III and refreshToken=JJJJ.KKKK.LLL
+Step 15:    user made GET /users/modules with header “Authorization: Bearer GGGG.HHHH.III”
+            and system returned OK(200) with some modules visible only to logged in users

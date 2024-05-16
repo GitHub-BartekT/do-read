@@ -1,0 +1,29 @@
+# checking authorization and authentication path:
+# User - "someTestUser", password='somePassword' - not registered
+# Access Token, Refresh Token
+# Endpoints:
+    # public
+    # logged users
+    # admin
+
+Step 1: Unregistered User made GET /public/modules and system returned OK(200) with one public module
+Step 2: user made POST /auth/signup with username="someTestUser", password="someTestPassword"
+        and system registered user with status OK(200)
+Step 3: user tried to get JWT token by requesting POST /auth/signin with username="someTestUser", password="someTestPassword"
+        and system returned OK(200) and token=AAAA.BBBB.CCC and refreshToken=DDDD.EEEE.FFF
+Step 4: user checked all available for him modules (public and only for users modules) system returned 2 modules
+Step 5: user checked his private modules system returned 1 predefined module
+Step 6: user add one public module to his private modules
+Step 7: user checked his private  modules system returned 2 modules
+Step 8: user remove one private module
+Step 9: user checked his private modules system returned 1 module
+Step 10: user start module session system returned 5 phrase and actualized module properties
+Step 11: user checked module properties system returned actualized module properties
+Step 12: user changed module properties system returned actualized module properties
+Step 13: user got module sentences system returned module sentences
+Step 14: user changed module sentences system returned changed module sentences
+
+
+
+
+

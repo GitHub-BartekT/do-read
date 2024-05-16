@@ -1,0 +1,34 @@
+DOING:
+1. Integration Test scenarios
+
+TODO:
+1. APP module
+
+WAITING:
+1. API ports
+  a. for module
+    - command
+    - query
+  b. for sentence
+    - command
+    - query
+
+DONE:
+    4. Integration AUTH test scenario
+    3. Ports for adapters
+    2. Data model
+    1. Security + JWT
+
+LOGBOOK:
+2024_05_16:
+    1. Add Security tokens:
+        Access token
+        Refresh token
+    2. Hexagon ports for modules
+    3. Integration AUTH test scenario
+2024_05_14:
+    1. Add Security chain
+2024_05_13:
+    1. Add User_Stories number 9    - V_001
+    2. Add technical requirements   - V_002
+    3. Divide modules               - V_002
