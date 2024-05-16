@@ -1,0 +1,12 @@
+1. Architektura         - Hexagonal architecture
+2. CQRS
+3. Testy integracyjne
+4. Dokumentacja API     - swagger
+5. Security
+    Security + JWT
+        Identyfikacja użytkownika za pomocą Login - brak konieczności podawania maila
+        Dodanie Uzytkownika "Guest" prz starcie aplikacji
+        Dane użytkownika powinny być okresowo resetowane do początkowych wartości.
+6. Spring Boot
+7. Database             - noSQL - MongoDB
+
