@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @SpringBootApplication
 @EnableMongoRepositories
-//@ComponentScan({"pl.iseebugs.read.moduleProperties","pl.iseebugs.read.module"})
 public class DoReadApplication {
 
 	public static void main(String[] args) {
